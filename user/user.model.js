@@ -6,10 +6,15 @@ const ExpertSchema=mongoose.Schema({
 });
 const UserSchema = mongoose.Schema({
     username: String ,
-    password: String,
+    mdp: String ,
     firstname:String,
     lastname:String,
-    email:String,
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true, 
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    },
     phone:Number,
     country:String,
     city:String,
@@ -20,7 +25,8 @@ const UserSchema = mongoose.Schema({
     dateofb:Date,
     isadmin:Boolean,
     expert:[ExpertSchema],
-    skills:String
+    skills:String,
+    
 }, {
     timestamps: true
 });

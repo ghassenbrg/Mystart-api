@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const LessonSchema = mongoose.Schema({
     
 
-    
+    nbr_lesson:Number,
     title: String, 
     videoUrl:String,
-    notes:Number,
-    courseid:String
+    notes:String,
+    courseid:String,
+    attachement:String
 }, {
     timestamps: true
 });

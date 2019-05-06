@@ -84,7 +84,8 @@ exports.login=(req,res) => {
             return res.status(200).json({
               message: "Auth successful",
               token: token,
-              id: admin._id
+              id: admin._id,
+              email:admin.email
             });
           }
           return res.status(404).json({
@@ -100,16 +101,7 @@ exports.login=(req,res) => {
       });
   };
 
-  exports.findAlladmin = (req,res) => {
-    Admin.find()
-    .then(admins => {
-        res.send(admins);
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message || "Something wrong while retrieving userss."
-        });
-    });
-}; 
+  
 
 
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ExpertSchema = mongoose.Schema({
-    expertname: String ,
+    username: String ,
     mdp: String ,
     firstname:String,
     lastname:String,

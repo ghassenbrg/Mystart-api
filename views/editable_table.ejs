@@ -206,13 +206,13 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="assets/img/avatar1_small.jpg">
-                <span class="username">Elwaer Youcef</span>
+                <span class="username"><%=data2.admin_name%></span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="account-setting"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="/logout"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -243,8 +243,9 @@
                     <span>Data Tables</span>
                 </a>
                 <ul class="sub">
-                    <li class="active"><a href="/editable_table">Editable Table</a></li>
+                    <li class="active"><a href="/editable_table">User Table</a></li>
                     <li ><a href="/projects">Projects Table</a></li>
+                    <li><a href="/experts-table">Experts Table</a></li>
                 </ul>
             </li>
          
@@ -277,7 +278,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Editable Table
+                        User Table
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -297,7 +298,7 @@
                                     <th>Expert</th>
                                     <th>Sexe</th>
                                     <th>creation date</th>
-                                    <th>Delete</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>   
@@ -315,7 +316,7 @@
                                     <td><a class="sexe" ><%=data[i].sexe %></a></td>
                                     <td><a class="picture"><%=data[i].createdAt %></a></td>
                               
-                                    <td><a class="delete" href="/deleteuser"> Delete</a></td>
+                                    <td>     <a href="mail_compose" class="btn btn-primary btn-xs"> contact </a> <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                                 </tr><% } %> 
                                
                             </form>

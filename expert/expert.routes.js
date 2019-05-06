@@ -33,7 +33,7 @@ else
     // else Create a expert
     const expert = new Expert({ 
 
-        expertname: req.body.nom, 
+        username: req.body.nom, 
         mdp:hash,
         firstname:req.body.firstname,
         lastname:req.body.lastname,
@@ -184,7 +184,7 @@ exports.update = (req, res) => {
 
     // Find and update expert with the request body
     Expert.findByIdAndUpdate(req.params.expertId, {
-        expertname: req.body.nom, 
+        username: req.body.nom, 
         mdp:hash,
         firstname:req.body.firstname,
         lastname:req.body.lastname,

@@ -9,8 +9,7 @@ module.exports = (app) => {
   
 
     app.post('/api/admin/login',admins.login);
-    // Retrieve all Users
-    app.get('/api/admins',admins.findAlladmin);
+    
    
     app.get('/api/admin/:adminId',admins.findadmin);
     // Retrieve a single Product with userId

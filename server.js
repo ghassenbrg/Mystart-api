@@ -6,6 +6,7 @@ var nodemailer=require('nodemailer');
 const ejs = require("ejs");
 require('dotenv').config();
 const app = express();
+
 // parse requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -92,10 +93,14 @@ app.get('/projects', urlencodedParser,(req,res)=>{
 });
 
 app.get('/editable_table', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
     request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body);
-            res.render('editable_table',{data: myData});
+            res.render('editable_table',{data: myData,data2:myData2});
            }
        });
 });
@@ -113,14 +118,34 @@ app.delete('/delete', function(req, res) {
 app.get('/mail_compose',(req,res)=>{
     res.render('mail_compose');
 });
+//get experts
+app.get('/experts-table', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/experts" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
+
+
 app.get('/',(req,res)=>{
+    res.render('login');
+});
+
+app.get('/logout',(req,res)=>{
+    myAdmin=null;
     res.render('login');
 });
 app.post('/', function(req, res) {
     request.post({ url: "http://localhost:3000/api/admin/login", form: req.body },function(error, response, body) {
             if (!error && response.statusCode == 200) {
-                myData = JSON.parse(body);
-                request.get({ url: "http://localhost:3000/api/admin/"+myData.id},function(error, response, body) {
+                global.myAdmin = JSON.parse(body);
+                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
                     if (!error && response.statusCode == 200) {
                         myData2 = JSON.parse(body);
                         res.render('index',{data:myData2});
@@ -134,7 +159,7 @@ app.post('/', function(req, res) {
    });
 
    app.post('/account-setting', function(req, res) {
-    request.put({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9", form: req.body },function(error, response, body) {
+    request.put({ url: "http://localhost:3000/api/admin/"+myAdmin.id, form: req.body },function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 myData = JSON.parse(body);
                 request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9"},function(error, response, body) {
@@ -153,7 +178,7 @@ app.post('/', function(req, res) {
 
 app.post('/mail_compose', urlencodedParser ,function(req,res)
 {  global.mailOptions = {
-    from: "youcefwaer@gmail.com",
+    from: myAdmin.email,
     to: req.body.to,
     subject: req.body.subject,
     text: req.body.text,

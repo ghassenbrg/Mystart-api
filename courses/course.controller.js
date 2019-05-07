@@ -2,17 +2,17 @@ module.exports = (app) => {
     const courses = require('./course.routes.js');
 
     // Create a new project
-    app.post('/courses', courses.create);
+    app.post('/api/courses', courses.create);
 
     // Retrieve all projects
-    app.get('/courses', courses.findAll);
+    app.get('/api/courses', courses.findAll);
 
     // Retrieve a project
-    app.get('/course/:courseId', courses.findOne);
+    app.get('/api/courses/:courseId', courses.findOne);
 
     // Update project
-    app.put('/courses/:courseId', lessons.update);
+    app.put('/api/courses/:courseId', courses.update);
 
     // Delete a user
-    app.delete('/courses/:lessonId', lessons.delete);
+    app.delete('/api/courses/:courseId', courses.delete);
 }

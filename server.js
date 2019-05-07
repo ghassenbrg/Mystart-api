@@ -38,6 +38,7 @@ require('./event/event.controller.js')(app);
 require('./question/question.controller.js')(app);
 require('./admin/admin.controller.js')(app);
 require('./expert/expert.controller.js')(app);
+require('./courses/course.controller.js')(app);
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
@@ -141,10 +142,13 @@ app.get('/courses', urlencodedParser,(req,res)=>{
     request.get({ url: "http://localhost:3000/api/courses" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body);
-            res.render('experts-table',{data: myData,data2:myData2});
+            res.render('courses',{data: myData,data2:myData2});
            }
        });
 });
+
+
+
 
 app.get('/',(req,res)=>{
     res.render('login');

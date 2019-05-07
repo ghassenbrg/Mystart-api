@@ -1,4 +1,4 @@
-const Lesson = require('./lesson.model.js');
+const Course = require('./course.model.js');
 
 //Create new user
 exports.create = (req, res) => {
@@ -6,22 +6,27 @@ exports.create = (req, res) => {
     if(!req.body) {
         
         return res.status(400).send({
-            message: "lesson cannot created"
+            message: "course cannot created"
         });
     }
 
     // Create a user
-    const lesson = new Lesson({
+    const course = new Course({
+
         
-        title: req.body.title, 
-        videoUrl:req.body.videoUrl,
-        notes:req.body.notes,
-        courseid:req.body.courseid
+    title:req.body.title,
+    description: req.body.description, 
+    coverImg:req.body.coverImg,
+    price:req.body.price,
+   published:req.body.published,
+   lessons:req.body.lessons
+        
+   
        
     });
 
     // Save User in the database
-    lesson.save()
+    course.save()
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -31,11 +36,11 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all users from the database.
+// Retrieve all courses from the database.
 exports.findAll = (req,res) => {
-    Lesson.find()
-    .then(lessons => {
-        res.send(lessons);
+    Course.find()
+    .then(courses => {
+        res.send(courses);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Something wrong while retrieving events."
@@ -45,22 +50,22 @@ exports.findAll = (req,res) => {
 
 // Find a single event by id
 exports.findOne = (req, res) => {
-    Lessons.findById(req.params.lessonId)
-    .then(lesson => {
-        if(!lesson) {
+    Courses.findById(req.params.courseId)
+    .then(course => {
+        if(!course) {
             return res.status(404).send({
                 message: "event not found with id " + req.params.eventId
             });            
         }
-        res.send(lesson);
+        res.send(course);
     }).catch(err => {
-        if(err.kind === 'lessonId') {
+        if(err.kind === 'courseId') {
             return res.status(404).send({
-                message: "lesson not found with id " + req.params.lessonId
+                message: "course not found with id " + req.params.courseId
             });                
         }
         return res.status(500).send({
-            message: "Something wrong retrieving lesson with id " + req.params.lessonId
+            message: "Something wrong retrieving course with id " + req.params.courseId
         });
     });
 };
@@ -70,56 +75,60 @@ exports.update = (req, res) => {
     // Validate Request
     if(!req.body) {
         return res.status(400).send({
-            message: "lesson content can not be empty"
+            message: "course content can not be empty"
         });
     }
 
     // Find and update user with the request body
-    Lesson.findByIdAndUpdate(req.params.lessonId, {
-        nbr_lesson:req.body.nbr_lesson,
-        title: req.body.title, 
-        videoUrl:req.body.videoUrl,
-        notes:req.body.notes,
-        courseid:req.body.courseid,
-        attachement:req.body.attachement,
+    Course.findByIdAndUpdate(req.params.courseId, {
+
+
+        title:req.body.title,
+        description: req.body.description,
+        coverImg:req.body.coverImg,
+        price:req.body.price,
+        published:req.body.published,
+      
+
+
     }, {new: true})
-    .then(lesson => {
-        if(!lesson) {
+    .then(course => {
+        if(!course) {
             return res.status(404).send({
-                message: "lesson not found with id " + req.params.lessonId
+                message: "course not found with id " + req.params.courseId
             });
         }
-        res.send(lesson);
+        res.send(course);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "lesson not found with id " + req.params.lessonId
+                message: "course not found with id " + req.params.courseId
             });                
         }
         return res.status(500).send({
-            message: "Something wrong updating  " + req.params.lessonId
+            message: "Something wrong updating  " + req.params.courseId
         });
     });
 };
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-    Lesson.findByIdAndRemove(req.params.lessonId)
-    .then(lesson => {
-        if(!lesson) {
+    Course.findByIdAndRemove(req.params.courseId)
+    .then(course => {
+        if(!course) {
             return res.status(404).send({
-                message: "lesson not found with id " + req.params.lessonId
+                message: "course not found with id " + req.params.courseId
             });
         }
-        res.send({message: "lesson deleted successfully!"});
+        res.send({message: "course deleted successfully!"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "lesson not found with id " + req.params.lessonId
+                message: "course not found with id " + req.params.courseId
             });                
         }
         return res.status(500).send({
-            message: "Could not find lesson with id " + req.params.lessonId
+            message: "Could not find course with id " + req.params.courseId
         });
     });
 };

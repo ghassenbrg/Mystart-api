@@ -153,6 +153,7 @@
                             <li ><a href="/editable_table">Users table</a></li>
                             <li class="active"><a href="/projects">Projects Table</a></li>
                             <li><a href="/experts-table">Experts Table</a></li>
+                            <li><a href="/courses">Courses Table</a></li>
                         </ul>
                     </li>
                  
@@ -202,8 +203,8 @@
                                                 <th>Title</th>
                                                 <th>description</th>
                                                 <th>cover img</th>
-                                                <th>categorie</th>
-                                                <th>Custom</th>
+                                                <th>price</th>
+                                                <th>published</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -211,8 +212,7 @@
                                             <tr>
                                                 <td class="p-name">
                                                     <a href=""><%=data[i].title%></a>
-                                                    <br>
-                                                    <small><%=data[i].createdAt%></small>
+                                                
                                                 </td>
                                                 <td class="p-progress">
                                                  <p><%=data[i].description%></p>
@@ -227,8 +227,11 @@
                                                     
                                                
                                                 <td>
-                                                   <p><%=data[i].categorie%></p>
+                                                   <p><%=data[i].price%></p>
                                                 </td>
+                                                <td>
+                                                    <p><%=data[i].published%></p>
+                                                 </td>
                                                 <td>
                                                     <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                                

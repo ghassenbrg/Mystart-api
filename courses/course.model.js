@@ -1,16 +1,17 @@
 const mongoose = require('mongoose');
 
-const LessonSchema = mongoose.Schema({
+const  CourseSchema = mongoose.Schema({
     
 
-    nbr_lesson:Number,
-    title: String, 
-    videoUrl:String,
-    notes:String,
+    title:String,
+    description: String, 
+    coverImg:String,
+    price:Number,
     courseid:String,
-    attachement:String
+   published:Boolean,
+   lessons:Array
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('Lessons', LessonSchema);
+module.exports = mongoose.model('Courses', CourseSchema);

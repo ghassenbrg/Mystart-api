@@ -133,6 +133,19 @@ app.get('/experts-table', urlencodedParser,(req,res)=>{
 });
 
 
+app.get('/courses', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/courses" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
+
 app.get('/',(req,res)=>{
     res.render('login');
 });

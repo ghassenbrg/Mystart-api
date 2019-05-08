@@ -1,3 +1,4 @@
+
 const Article = require('./article.model.js');
 
 //Create new user

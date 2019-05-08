@@ -147,6 +147,19 @@ app.get('/courses', urlencodedParser,(req,res)=>{
        });
 });
 
+app.get('/articles', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/articles" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('articles',{data: myData,data2:myData2});
+           }
+       });
+});
+
 
 
 

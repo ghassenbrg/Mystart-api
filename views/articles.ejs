@@ -222,7 +222,13 @@
                                    
                                     
                                     <td><a class="sexe" ><%=data[i].views %></a></td>
-                                     <td><a class="createdate">visible</a></td>
+                                    <%if (data[i].visibility==true) { %>
+                                        
+                                        <td><a class="createdate">visible</a></td> <%  }%> 
+                                     
+                                        <%if (data[i].visibility==false) { %> <td><a class="createdate">hidden</a></td> <%  }%> 
+                                     
+                               
                                      <td><a class="createdate"><%=data[i].categorie %></a></td>
                                    
                                     

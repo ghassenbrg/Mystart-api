@@ -69,6 +69,16 @@ exports.findOne = (req, res) => {
         });
     });
 };
+exports.findTodayEvents = (req,res) => {
+    Event.find({data:{ $exists: true}})
+    .then(events => {
+        res.send(events);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
 
 // Update a user
 exports.update = (req, res) => {

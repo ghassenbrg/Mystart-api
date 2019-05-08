@@ -10,6 +10,9 @@ module.exports = (app) => {
     // Retrieve a project
     app.get('/api/events/:eventId', events.findOne);
 
+
+
+
     // Update project
     app.put('/api/events/:eventId', events.update);
 

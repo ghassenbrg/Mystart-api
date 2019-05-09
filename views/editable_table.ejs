@@ -304,23 +304,28 @@
                                 </thead>
                                 <tbody>   
                                   
-                                    
+                                   
                                         <%  for(let i=0; i < data.length; i++) { %>
-                                            <form role="form-horizontal" method="delete" action="/deleteuser">
-                                <tr class="">
-                                    
-                                    <td name="firstname"><%=data[i].firstname%></td>
-                                    <td name="lastname"><%=data[i].lastname %></td>
+                                            <form class="form-horizontal" method="post" action="/editable_table">
+                                      <tr class="">
+                                        <div class="form-group" hidden="true">
+                                          
+                                       <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>"></td>
+                                        </div>
+                                        <td name="firstname"><%=data[i].firstname %></td>
+                                        <td name="lastname"><%=data[i].lastname %></td>
+
                                     <td name="email"><%=data[i].email %></td>
 
                                     <td class="expert"><%=data[i].expert %></td>
                                     <td><a class="sexe" ><%=data[i].sexe %></a></td>
                                     <td><a class="picture"><%=data[i].createdAt %></a></td>
                               
-                                    <td>     <a href="mail_compose" class="btn btn-primary btn-xs"> contact </a> <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
-                                </tr><% } %> 
+                                    <td>  <div class="form-group"> <a href="mail_compose" class="btn btn-primary btn-xs"> contact </a>  
+                                         <input class="btn btn-danger btn-xs" type="submit" value="Delete"/></div></td></tr>
+                                </tr> </form><% } %> 
                                
-                            </form>
+
                                 
                                 </tbody>
                             </table>

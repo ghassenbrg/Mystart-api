@@ -84,6 +84,7 @@ app.get('/account-setting', (req, res) => {
 
 
 
+
 app.get('/projects', urlencodedParser,(req,res)=>{
     request.get({ url: "http://localhost:3000/api/project" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -106,15 +107,7 @@ app.get('/editable_table', urlencodedParser,(req,res)=>{
        });
 });
 
-app.delete('/delete', function(req, res) {
-    var id = req.params.id ;
-    request.get({ url: "http://localhost:3000/api/user/"+id },function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-            myData = JSON.parse(body);
-            res.render('editable_table',{data: myData});
-        }});
 
-    });
 
 app.get('/mail_compose',(req,res)=>{
     res.render('mail_compose');
@@ -171,6 +164,9 @@ app.get('/logout',(req,res)=>{
     myAdmin=null;
     res.render('login');
 });
+
+
+
 app.post('/', function(req, res) {
     request.post({ url: "http://localhost:3000/api/admin/login", form: req.body },function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -200,11 +196,45 @@ app.post('/', function(req, res) {
                        else {
                     res.render(myData2);}
                    });
-               }
-        
-           });
-   });
+               }}); });
+   
 
+
+   app.post('/editable_table',urlencodedParser, function(req, res) { 
+                                                    
+    request.delete({ url: "http://localhost:3000/api/user/"+req.body.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    myData2 = JSON.parse(body);
+                   }});
+            request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    myData = JSON.parse(body);
+                    res.render('editable_table',{data: myData,data2:myData2});
+                   }
+               });
+           }
+        }); });
+
+
+        app.post('/courses',urlencodedParser, function(req, res) { 
+                                                    
+            request.delete({ url: "http://localhost:3000/api/courses/"+req.body.id},function(error, response) {
+                if (!error && response.statusCode == 200) {
+                   
+                    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/courses" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('courses',{data: myData,data2:myData2});
+           }
+       });
+                   }
+                }); });
 
 app.post('/mail_compose', urlencodedParser ,function(req,res)
 {  global.mailOptions = {

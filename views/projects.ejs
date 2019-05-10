@@ -210,7 +210,15 @@
                                             </thead>
                                             <tbody>
                                                   <%  for(let i=0; i < data.length; i++) { %>
-                                            <tr>
+                                                    <form role="form-horizontal" method="post" action="/projects">
+                                           
+                                                        <tr class="">
+                                                                <div class="form-group" hidden="true">
+                                                                  
+                                                                        <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                                         </div>
+                                          
+                                                
                                                 <td class="p-name">
                                                     <a href=""><%=data[i].title%></a>
                                                 
@@ -234,11 +242,12 @@
                                                     <p><%=data[i].published%></p>
                                                  </td>
                                                 <td>
-                                                    <a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                             <div class="form-group"><a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                                
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                                    <input class="btn btn-danger btn-xs" type="submit" value="Delete"/></div>
                                                 </td>
                                             </tr>
+                                        </form>
                                             <% } %> 
                                             
                                                  

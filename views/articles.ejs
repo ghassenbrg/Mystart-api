@@ -214,29 +214,35 @@
                                   
                                     
                                         <%  for(let i=0; i < data.length; i++) { %>
-                                            <form role="form-horizontal" method="delete" action="/deleteuser">
+                                            <form role="form-horizontal" method="post" action="/articles">
+                                           
                                 <tr class="">
+                                        <div class="form-group" hidden="true">
+                                          
+                                                <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>"></td>
+                                                 </div>
                                     <td name="Title"><%=data[i].title%></td>
                                     <td name="Description"><%=data[i].description%></td>
                                     <td name="published" ><a href="#"><img alt="image" class="" src="<%=data[i].coverImg%>"></a>
                                    
                                     
                                     <td><a class="sexe" ><%=data[i].views %></a></td>
+                                    <td>
                                     <%if (data[i].visibility==true) { %>
                                         
-                                        <td><a class="createdate">visible</a></td> <%  }%> 
+                                       <a class="createdate">visible</a> <%  }%> 
                                      
-                                        <%if (data[i].visibility==false) { %> <td><a class="createdate">hidden</a></td> <%  }%> 
+                                        <%if (data[i].visibility==false) { %> <a class="createdate">hidden</a> <%  }%> 
                                      
-                               
+                                    </td>
                                      <td><a class="createdate"><%=data[i].categorie %></a></td>
                                    
                                     
-                              
-                                    <td>     <a  class="btn btn-primary btn-xs"><i class="fa fa-download" ></i> download </a> <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
-                                </tr><% } %> 
+                                     <div class="form-group">
+                                    <td>     <a  class="btn btn-primary btn-xs"><i class="fa fa-download" ></i> download </a> <input class="btn btn-danger btn-xs" type="submit" value="Delete"></div></i> </td>
+                                </tr></form><% } %> 
                                
-                            </form>
+                            
                                 
                                 </tbody>
                             </table>

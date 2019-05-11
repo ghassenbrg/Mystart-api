@@ -23,9 +23,7 @@ const UserSchema = mongoose.Schema({
     cvurl:String,
     sexe: String,
     dateofb:Date,
-    isadmin:Boolean,
-    expert:[ExpertSchema],
-    skills:String,
+   
     
 }, {
     timestamps: true

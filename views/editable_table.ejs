@@ -160,6 +160,7 @@
                     <li><a href="/courses">Courses Table</a></li>
 
                     <li><a href="/articles">Articles Table</a></li>
+                    <li><a href="/orders">Orders Table</a></li>
                 </ul>
             </li>
          
@@ -203,15 +204,14 @@
                         <div class="adv-table editable-table ">
                            
                             <div class="space15"></div>
-                            <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                            <table class="table table-hover p-table" id="editable-sample">
                                 <thead>
                                 <tr>
                                     <th>User Name</th>
                                     <th>First Name</th>
-                                    <th>Email</th>
-                                    <th>Expert</th>
+                                    <th>Number</th>
                                     <th>Sexe</th>
-                                    <th>creation date</th>
+                                  <th>picture</th>
                                     <th>mailing</th>
                                     <th>Delete</th>
                                 </tr>
@@ -230,11 +230,11 @@
                                         <td name="firstname"><%=data[i].firstname %></td>
                                         <td name="lastname"><%=data[i].lastname %></td>
 
-                                    <td name="email"><%=data[i].email %></td>
+                                    <td name="email"><%=data[i].phone %></td>
 
-                                    <td class="expert"><%=data[i].expert %></td>
+                                    <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
                                     <td><a class="sexe" ><%=data[i].sexe %></a></td>
-                                    <td><a class="picture"><%=data[i].createdAt %></a></td>
+                                   
                               
                                     <td>     <span class="form-group">
                                             <form class="form-horizontal" method="post" action="/mail-compose">

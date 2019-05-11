@@ -153,6 +153,7 @@
                     <li ><a href="/experts-table">Experts Table</a></li>
                     <li class="active"><a href="/courses">Courses Table</a></li>
                     <li><a href="/articles">Articles Table</a></li>
+                    <li><a href="/orders">Orders Table</a></li>
                 </ul>
             </li>
          
@@ -185,7 +186,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Experts Table
+                        Courses Table
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -204,6 +205,7 @@
                                     <th>Coverimg</th>
                                     <th>Price</th>
                                     <th>Published</th>
+                                    <th>Action</th> 
                                
                                 </tr>
                                 </thead>
@@ -221,11 +223,20 @@
                                     <td name="Description"><%=data[i].description%></td>
                                     <td name="published" ><a href="#"><img alt="image" class="" src="<%=data[i].coverImg%>"></a>
                                    
-                                    
-                                    <td><a class="sexe" ><%=data[i].price %></a></td>
-                                    <td><a class="createdate"><%=data[i].createdAt %></a></td>
+                 
+                                    <td><a class="sexe" ><%=data[i].price %>$</a></td>
+                                    <td>
+
+                                        <%if (data[i].published==true) { %>
+                                            
+                                            <a class="createdate">published</a> <%  }%> 
+                                          
+                                             <%if (data[i].published==false) { %> <a class="createdate">not published</a> <%  }%> 
+    
+                                       </td>
+                
                                     <div class="form-group">
-                                    <td>    <a  class="btn btn-primary btn-xs"> view </a>    <input class="btn btn-danger btn-xs" type="submit" value="Delete"></div></td></tr>
+                                    <td>    <a  class="btn btn-primary btn-sm"> view </a>    <input class="btn btn-danger btn-sm" type="submit" value="Delete"></div></td></tr>
 
                             </form>
                                 <% } %> 

@@ -39,6 +39,7 @@ require('./question/question.controller.js')(app);
 require('./admin/admin.controller.js')(app);
 require('./expert/expert.controller.js')(app);
 require('./courses/course.controller.js')(app);
+require('./order/order.controller.js')(app);
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
@@ -86,10 +87,14 @@ app.get('/account-setting', (req, res) => {
 
 
 app.get('/projects', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
     request.get({ url: "http://localhost:3000/api/project" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body);
-            res.render('projects',{data: myData});
+            res.render('projects',{data: myData,data2:myData2});
            }
        });
 });
@@ -172,6 +177,64 @@ app.get('/articles', urlencodedParser,(req,res)=>{
            }
        });
 });
+
+
+app.get('/orders', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/orders" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+           myData = JSON.parse(body);
+           } });
+           
+           request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+               myData4 = JSON.parse(body);
+               } });
+
+
+            request.get({url:"http://localhost:3000/api/experts"},function(error,response,body){
+            if (!error && response.statusCode == 200) {
+          myData3=JSON.parse(body);
+          
+            res.render('orders',{data: myData,data2:myData2,data3:myData3,userData:myData4});
+           }
+       });
+});
+
+app.post('/orders', urlencodedParser,(req,res)=>{
+ 
+                                                    
+        request.delete({ url: "http://localhost:3000/api/orders/"+req.body.id},function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData2 = JSON.parse(body);
+                       }});
+                       request.get({ url: "http://localhost:3000/api/orders" },function(error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                           myData = JSON.parse(body);
+                           } });
+                           
+                           request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+                            if (!error && response.statusCode == 200) {
+                               myData4 = JSON.parse(body);
+                               } });
+                
+                
+                            request.get({url:"http://localhost:3000/api/experts"},function(error,response,body){
+                            if (!error && response.statusCode == 200) {
+                          myData3=JSON.parse(body);
+                          
+                            res.render('orders',{data: myData,data2:myData2,data3:myData3,userData:myData4});
+                        }
+                    });
+                }})});
+    
+
+
 
 
 
@@ -308,8 +371,17 @@ app.post('/', function(req, res) {
                                 
                                 }); 
                                 app.get('/mail_compose',(req,res)=>{
-                                    res.render('mail_compose',{data:req.body});
-                                });
+                                    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                                        if (!error && response.statusCode == 200) {
+                                           
+                                            myData2 = JSON.parse(body);
+                                            res.render('mail_compose',{data:req.body,data2:myData2});
+                                           }});
+                                 
+                                        
+                                        }); 
+                                   
+                  
 
 app.post('/mail_compose', urlencodedParser ,function(req,res)
 {  global.mailOptions = {

@@ -117,7 +117,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="assets/img/avatar1_small.jpg">
-                        <span class="username">Elwaer Youcef</span>
+                        <span class="username"><%=data2.admin_name%></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -155,6 +155,7 @@
                             <li><a href="/experts-table">Experts Table</a></li>
                             <li><a href="/courses">Courses Table</a></li>
                             <li><a href="/articles">Articles Table</a></li>
+                            <li ><a href="/articles">Articles Table</a></li>
                         </ul>
                     </li>
                  
@@ -204,8 +205,8 @@
                                                 <th>Title</th>
                                                 <th>description</th>
                                                 <th>cover img</th>
-                                                <th>price</th>
-                                                <th>published</th>
+                                                <th>categorie</th>
+                                                <th>state</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -236,15 +237,15 @@
                                                     
                                                
                                                 <td>
-                                                   <p><%=data[i].price%></p>
+                                                   <p><%=data[i].categorie%></p>
                                                 </td>
                                                 <td>
-                                                    <p><%=data[i].published%></p>
+                                                    <p><%=data[i].state%></p>
                                                  </td>
                                                 <td>
-                                             <div class="form-group"><a href="project_details.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                             <div class="form-group"><a href="project_details.html" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> View </a>
                                                
-                                                    <input class="btn btn-danger btn-xs" type="submit" value="Delete"/></div>
+                                                    <input class="btn btn-danger btn-sm" type="submit" value="Delete"/></div>
                                                 </td>
                                             </tr>
                                         </form>

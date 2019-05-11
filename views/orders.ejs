@@ -104,11 +104,6 @@
     
     </ul>
     <!--  notification end -->
-
-
-
-
-
 </div>
 <div class="top-nav clearfix">
     <!--form-control medium & user info start-->
@@ -155,10 +150,10 @@
                 <ul class="sub">
                     <li ><a href="/editable_table">Users Table</a></li>
                     <li ><a href="/projects">Projects Table</a></li>
-                    <li class="active"><a href="/experts-table">Experts Table</a></li>
-                    <li><a href="/courses">Courses Table</a></li>
+                    <li ><a href="/experts-table">Experts Table</a></li>
+                    <li ><a href="/courses">Courses Table</a></li>
                     <li><a href="/articles">Articles Table</a></li>
-                    <li><a href="/orders">Orders Table</a></li>
+                    <li class="active"><a href="/orders">Orders Table</a></li>
                 </ul>
             </li>
          
@@ -191,7 +186,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Experts Table
+                        Orders Table
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -205,48 +200,60 @@
                             <table class="table table-hover p-table" >
                                 <thead>
                                 <tr>
-                                    <th>User Name</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>picture</th>
-                                    <th>Sexe</th>
-                                    <th>skills</th>
-                                    <th>mailing</th>
-                                    <th>Delete</th>
+                                    <th>ProductType</th>
+                                    <th>Cost</th>
+                                    <th>OrderStatu</th>
+                                    <th>client</th>
+                                    <th>buyer</th>
+                                    <th> email</th>
+                                    <th>delete</th>
+                               
                                 </tr>
                                 </thead>
                                 <tbody>   
                                   
                                     
                                         <%  for(let i=0; i < data.length; i++) { %>
+                                       
+                                <tr class="">
+                                        <div class="form-group" hidden="true">
                                           
-                                           
-                                                <tr class="">
-                                                        <div class="form-group" hidden="true">
-                                                          
-                                                                <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>"></td>
-                                                                 </div>
-                                    <td name="username"><%=data[i].firstname%></td>
-                                    <td name="firstname"><%=data[i].firstname%></td>
-                                    <td name="lastname"><%=data[i].lastname %></td>
+                                                <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>"></td>
+                                                 </div>
+                                    <td name="Title"><%=data[i].productType%></td>
+                                    <td name="Description"><%=data[i].cost%></td>
+                                    
+                                    
                                    
-                                    <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
-                                    <td><a class="sexe" ><%=data[i].sexe %></a></td>
-                                    <td><a class="createdate"><%=data[i].skills %></a></td>
-                              
+                                    
+                                    <td><a class="sexe" ><%=data[i].orderStatu %></a></td>
+                                    <% let j=0; while((j < data3.length)&&(data[i].expert!=data3[j]._id)){j++;} %>
+                                    <% let c=0; while((c < userData.length)&&(data[i].user!=userData[c]._id)){c++;} %>
+
+                                    <td><a class="createdate"><%=data3[j].username %></a></td>
+                                    <td><a class="createdate"><%=userData[c].username %></a></td>
                                     <td>     <span class="form-group">
                                         <form class="form-horizontal" method="post" action="/mail-compose">
                                          <span class="form-group" hidden="true">
                 
                                   
-                                              <label for="id" class="">id:</label> <input type="text" tabindex="1" id="email" class="form-control" name="email" value="<%=data[i].email %>">
-                                         </span>  <input class="btn btn-primary btn-sm" type="submit" value="mail" text-align="text-center"/></span>
+                                              <label for="id" class="">id:</label> <input type="text" tabindex="1" id="email" class="form-control" name="email" value="<%=data3[j].email %>">
+
+                                         </span> 
+                                         <span class="form-group" hidden="true">
+                
+                                  
+                                            <label for="id" class="">id:</label> <input type="text" tabindex="2" id="cc" class="form-control" name="cc" value="<%=userData[c].email %>">
+
+                                       </span> 
+                                         
+                                         <input class="btn btn-primary btn-sm" type="submit" value="mail" /></span>
                               
                                         </form></td>
                                <!-- form of delete-->
                                <td> 
                                     <div class="form-group">
-                                    <form class="form-horizontal" method="post" action="/experts-table">
+                                    <form class="form-horizontal" method="post" action="/orders">
                                      <div class="form-group" hidden="true">
                                       
                                         <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
@@ -254,8 +261,10 @@
 
                            
                                      </form><% } %> 
-                             
-                        
+                           
+
+                               
+  
                                 
                                 </tbody>
                             </table>

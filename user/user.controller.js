@@ -3,7 +3,7 @@ module.exports = (app) => {
     const users = require('./user.routes.js');
 
     // Create a new User
-    app.post('/api/users',users.create);
+    app.post('/api/user',users.create);
 
   
   

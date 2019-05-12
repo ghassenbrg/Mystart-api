@@ -1,3 +1,4 @@
+
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
 <body>
@@ -222,17 +223,14 @@
                                           
                                            
                                                 <tr class="">
-                                                        <div class="form-group" hidden="true">
-                                                          
-                                                                <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>"></td>
-                                                                 </div>
-                                    <td name="username"><%=data[i].firstname%></td>
+                                                       
+                                    <td name="username"><%=data[i].username%></td>
                                     <td name="firstname"><%=data[i].firstname%></td>
                                     <td name="lastname"><%=data[i].lastname %></td>
                                    
                                     <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
-                                    <td><a class="sexe" ><%=data[i].sexe %></a></td>
-                                    <td><a class="createdate"><%=data[i].skills %></a></td>
+                                    <td name="sexe" ><%=data[i].sexe %></td>
+                                    <td name="createdate"><%=data[i].skills %></td>
                               
                                     <td>     <span class="form-group">
                                         <form class="form-horizontal" method="post" action="/mail-compose">
@@ -244,13 +242,41 @@
                               
                                         </form></td>
                                <!-- form of delete-->
-                               <td> 
-                                    <div class="form-group">
-                                    <form class="form-horizontal" method="post" action="/experts-table">
-                                     <div class="form-group" hidden="true">
-                                      
-                                        <label for="id" class="">id:</label> <input type="text" tabindex="1" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
-                                     </div>  <input class="btn btn-danger btn-sm" type="submit" value="Delete"/> </form></div></td></tr>
+                               <div class="modal fade" id="confirm-delete<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                            </div>
+                                        
+                                            <div class="modal-body">
+                                                <p>You are about to delete <strong><%=data[i].username%></strong>, this procedure is irreversible.</p>
+                                                <p>Do you want to proceed?</p>
+                                                <p class="debug-url"></p>
+                                            </div>
+                                            
+                                                    
+                                            <div class="modal-footer">
+                                                    
+                                                    <div class="form-group">
+                                                           
+                                                            <form class="form-horizontal" method="post" action="/experts-table">
+                                                             <div class="form-group" hidden="true">
+                                                                   
+                                                              <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                             </div>  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button> <input class="btn btn-danger btn-sm" type="submit" value="Delete"/> </form></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  
+                                              <td>
+                                              
+                                               <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
+                                              Delete
+                                            </button></td></tr>
 
                            
                                      </form><% } %> 
@@ -524,11 +550,13 @@
 </section>
 
 
-
-<!--script for this page only-->
-
-
-<!-- END JAVASCRIPTS -->
+<script>
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            
+          
+        });
+    </script>
 
 
 </body>

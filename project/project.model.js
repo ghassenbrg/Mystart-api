@@ -6,6 +6,7 @@ const ProjectSchema = mongoose.Schema({
     description: String,
     coverimg:String,
     categorie:String,
+    verified:Boolean
 }, {
     timestamps: true
 });

@@ -13,6 +13,8 @@ module.exports = (app) => {
     // Update project
     app.put('/api/courses/:courseId', courses.update);
 
+    app.put('/api/verifycourses/:courseId', courses.verify);
+    
     // Delete a user
     app.delete('/api/courses/:courseId', courses.delete);
 }

@@ -21,6 +21,8 @@ module.exports = (app) => {
     // Update user
     app.put('/api/user/:userId',users.update);
 
+    app.put('/api/banuser/:userId',users.ban);
+    app.put('/api/unbanuser/:userId',users.unban);
     // Delete a user
     app.delete('/api/user/:userId',users.delete);
 

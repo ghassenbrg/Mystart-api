@@ -86,6 +86,43 @@ exports.update = (req, res) => {
         visibility:req.body.visibility, 
         authorized:req.body.authorized, 
         categorie:req.body.categorie, 
+        
+    }, {new: true})
+    .then(article => {
+        if(!article) {
+            return res.status(404).send({
+                message: "article not found with id " + req.params.articleId
+            });
+        }
+        res.send(article);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "article not found with id " + req.params.articleId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating  " + req.params.articleId
+        });
+    });
+};
+
+
+
+
+// Update a user
+exports.updatearticle = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "article content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    Article.findByIdAndUpdate(req.params.articleId, {
+      verified:true
+        
     }, {new: true})
     .then(article => {
         if(!article) {

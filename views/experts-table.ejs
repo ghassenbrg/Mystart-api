@@ -236,8 +236,11 @@
                                     <th>picture</th>
                                     <th>Sexe</th>
                                     <th>skills</th>
+                                    <th>Action</th>
                                     <th>mailing</th>
+                               
                                     <th>Delete</th>
+                                 
                                 </tr>
                                 </thead>
                                 <tbody>   
@@ -255,7 +258,47 @@
                                     <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
                                     <td name="sexe" ><%=data[i].sexe %></td>
                                     <td name="createdate"><%=data[i].skills %></td>
-                              
+                                  
+                                    <% if (data[i].verified==false) { %>  
+                                        <td>     
+                                                <div class="form-group">
+                                           
+                                                        <form class="form-horizontal" method="post" action="/verify">
+                                                         <div class="form-group" hidden="true">
+                                                               
+                                                          <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                         </div>   <input class="btn btn-success btn-sm" type="submit" value="verify"/> </form></div>
+                                          </td>
+                                     <%}%>
+                                   
+                                     
+                                     
+                                     <% if (data[i].banned==false) { %>  
+                                        <td>     
+                                                <div class="form-group">
+                                           
+                                                        <form class="form-horizontal" method="post" action="/ban">
+                                                         <div class="form-group" hidden="true">
+                                                               
+                                                          <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                         </div>   <input class="btn btn-warning btn-sm" type="submit" value="ban"/> </form></div>
+                                          </td>
+                                        <%}%>
+                                        <% if (data[i].banned) { %>  
+                                            <td>     
+                                                    <div class="form-group">
+                                               
+                                                            <form class="form-horizontal" method="post" action="/unban">
+                                                             <div class="form-group" hidden="true">
+                                                                   
+                                                              <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                             </div>   <input class="btn btn-default btn-sm" type="submit" value="unban"/> </form></div>
+                                              </td>
+                                            <%}%>
+           
+                         
+                  
+             
                                     <td>     <span class="form-group">
                                         <form class="form-horizontal" method="post" action="/mail-compose">
                                          <span class="form-group" hidden="true">
@@ -300,12 +343,9 @@
                                               
                                                <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
                                               Delete
-                                            </button></td></tr>
-
-                           
-                                     </form><% } %> 
-                             
-                        
+                                            </button></td>
+                                            
+                                        </tr> </form><% } %> 
                                 
                                 </tbody>
                             </table>

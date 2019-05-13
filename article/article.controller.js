@@ -13,6 +13,9 @@ module.exports = (app) => {
     // Update project
     app.put('/api/articles/:articleId', articles.update);
 
+
+    app.put('/api/updatearticles/:articleId', articles.updatearticle);
+
     // Delete a user
     app.delete('/api/articles/:articleId', articles.delete);
 }

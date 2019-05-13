@@ -233,6 +233,9 @@
                                                 <th>cover img</th>
                                                 <th>categorie</th>
                                                 <th>state</th>
+                                                <th>view</th>
+                                                <th>delete</th>
+                                                <th>verify</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -260,9 +263,14 @@
                                                 <td>
                                                    <p><%=data[i].categorie%></p>
                                                 </td>
-                                                <td>
-                                                    <p><%=data[i].state%></p>
-                                                 </td>
+                                               
+                                                      
+                                                
+                             <td>
+
+
+                                    <p><%=data[i].state%></p>
+                             </td>
                                                 <td>
                                              <a href="project_details.html" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> View </a></td>
                                                
@@ -301,7 +309,24 @@
                                           
                                            <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
                                           Delete
-                                        </button></td></tr>
+                                        </button></td>
+                                      
+                                        <% if (data[i].verified==false) { %>  
+                                            <td>     
+                                                   
+                                               
+                                                            <form class="form-horizontal" method="post" action="/verifyproject">
+                                                             <div class="form-group" hidden="true">
+                                                                   
+                                                              <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                             </div>   <input class="btn btn-success btn-sm" type="submit" value="verify"/> </form>
+                                              </td>
+                                              <%}%>
+
+                                         <% if (data[i].verified==true) { %>
+                                         <td><p><strong><i class="fa fa-check"></i>Verified</strong></p></td>
+                                         <%}%>
+                                    </tr>
 
                        
                                  </form><% } %> 

@@ -18,6 +18,8 @@ const ExpertSchema = mongoose.Schema({
     withdrawn:Number,
     availableforwithdrawal:Number,
     skills:String,
+    verified:Boolean,
+    banned:Boolean
     
 }, {
     timestamps: true

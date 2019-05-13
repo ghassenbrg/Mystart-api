@@ -19,8 +19,8 @@ exports.create = (req, res) => {
     coverImg:req.body.coverImg,
     price:req.body.price,
    published:req.body.published,
-   lessons:req.body.lessons
-        
+   lessons:req.body.lessons,
+        verified:false
    
        
     });
@@ -88,6 +88,43 @@ exports.update = (req, res) => {
         coverImg:req.body.coverImg,
         price:req.body.price,
         published:req.body.published,
+      
+
+
+    }, {new: true})
+    .then(course => {
+        if(!course) {
+            return res.status(404).send({
+                message: "course not found with id " + req.params.courseId
+            });
+        }
+        res.send(course);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "course not found with id " + req.params.courseId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating  " + req.params.courseId
+        });
+    });
+};
+
+
+exports.verify = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "course content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    Course.findByIdAndUpdate(req.params.courseId, {
+
+
+        verified:true
       
 
 

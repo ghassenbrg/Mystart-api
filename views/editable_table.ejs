@@ -254,7 +254,7 @@
                                     <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
                                     <td><a class="sexe" ><%=data[i].sexe %></a></td>
                                    
-
+                           
 
                                     
 
@@ -311,9 +311,30 @@
                                               
                                                <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
                                               Delete
-                                            </button></td></tr>
-
-                           
+                                            </button></td>
+                                            <% if (data[i].banned==false) { %>  
+                                                <td>     
+                                                        <div class="form-group">
+                                                   
+                                                                <form class="form-horizontal" method="post" action="/banuser">
+                                                                 <div class="form-group" hidden="true">
+                                                                       
+                                                                  <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                                 </div>   <input class="btn btn-warning btn-sm" type="submit" value="ban"/> </form></div>
+                                                  </td>
+                                                <%}%>
+                                                <% if (data[i].banned==true) { %>  
+                                                    <td>     
+                                                            <div class="form-group">
+                                                       
+                                                                    <form class="form-horizontal" method="post" action="/unbanuser">
+                                                                     <div class="form-group" hidden="true">
+                                                                           
+                                                                      <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                                     </div>   <input class="btn btn-default btn-sm" type="submit" value="unban"/> </form></div>
+                                                      </td>
+                                                    <%}%>
+                                                </tr>
                                      </form><% } %> 
 
 

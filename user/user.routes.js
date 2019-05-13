@@ -147,26 +147,7 @@ exports.findAllexpert = (req,res) => {
 };
 //return admin 
 
-exports.findexpert = (req, res) => {
-    User.find( { $and: [ { _id:req.params.userId }, { expert: { $exists: true } } ] } )
-    .then(user => {
-        if(!user) {
-            return res.status(404).send({
-                message: "user not found with id " + req.params.userId
-            });            
-        }
-        res.send(user);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "user not found with id " + req.params.userId
-            });                
-        }
-        return res.status(500).send({
-            message: "Something wrong retrieving user with id " + req.params.userId
-        });
-    });
-};
+
 
 /*exports.login = (req, res) => {
     User.find( { $and: [ { username:req.params.username }, { password: req.params.username } ] } )
@@ -254,6 +235,72 @@ exports.update = (req, res) => {
         });
     });
 };
+
+
+
+
+exports.ban = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "user content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    User.findByIdAndUpdate(req.params.userId, {
+       banned:true,
+    }, {new: true})
+    .then(user => {
+        if(!user) {
+            return res.status(400).send({
+                message: " nothing to update " + req.params.userId
+            });
+        }
+        res.send(user);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "user not found with id " + req.params.userId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.userId
+        });
+    });
+};
+
+exports.unban = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "user content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    User.findByIdAndUpdate(req.params.userId, {
+       banned:false,
+    }, {new: true})
+    .then(user => {
+        if(!user) {
+            return res.status(400).send({
+                message: " nothing to update " + req.params.userId
+            });
+        }
+        res.send(user);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "user not found with id " + req.params.userId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.userId
+        });
+    });
+};
+
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {

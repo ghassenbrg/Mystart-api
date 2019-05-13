@@ -8,6 +8,7 @@ const ArticleSchema = mongoose.Schema({
     views:Number,
     visibility:Boolean,
     authorized:String,
+    verified:Boolean,
     categorie:String
 }, {
     timestamps: true

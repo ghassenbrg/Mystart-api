@@ -23,6 +23,7 @@ const UserSchema = mongoose.Schema({
     cvurl:String,
     sexe: String,
     dateofb:Date,
+    banned:Boolean
    
     
 }, {

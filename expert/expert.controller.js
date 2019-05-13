@@ -19,7 +19,9 @@ module.exports = (app) => {
   
     // Update expert
     app.put('/api/expert/:expertId',experts.update);
-  
+    app.put('/api/verifyexpert/:expertId',experts.verify);
+    app.put('/api/banexpert/:expertId',experts.ban);
+    app.put('/api/unbanexpert/:expertId',experts.unban);
 
     // Delete an expert 
     app.delete('/api/expert/:expertId',experts.delete);

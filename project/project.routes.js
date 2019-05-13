@@ -16,6 +16,7 @@ exports.create = (req, res) => {
         description: req.body.description,
         coverimg:req.body.coverimg,
         categorie:req.body.categorie,
+        verified:false,
     });
 
     // Save User in the database
@@ -78,6 +79,39 @@ exports.update = (req, res) => {
         description: req.body.description,
         coverimg:req.body.coverimg,
         categorie:req.body.categorie
+    }, {new: true})
+    .then(project => {
+        if(!project) {
+            return res.status(404).send({
+                message: "project not found with id " + req.params.projectId
+            });
+        }
+        res.send(project);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "project not found with id " + req.params.projectId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating  " + req.params.projectId
+        });
+    });
+};
+
+//verify project 
+
+exports.verify = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "project content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    Project.findByIdAndUpdate(req.params.projectId, {
+        verified:true
     }, {new: true})
     .then(project => {
         if(!project) {

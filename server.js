@@ -84,6 +84,45 @@ app.get('/account-setting', (req, res) => {
 );
 
 
+//ban user
+app.post('/unbanuser',urlencodedParser, function(req, res) { 
+                                                    
+    request.put({ url: "http://localhost:3000/api/unbanuser/"+req.body.id},function(error, response) {
+        if (!error && response.statusCode == 200) {
+           
+            request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData2 = JSON.parse(body);
+   }});
+request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData = JSON.parse(body);
+    res.render('editable_table',{data: myData,data2:myData2});
+   }
+});
+           }
+        }); });
+
+        app.post('/banuser',urlencodedParser, function(req, res) { 
+                                        
+            request.put({ url: "http://localhost:3000/api/banuser/"+req.body.id},function(error, response) {
+                if (!error && response.statusCode == 200) {
+                   
+                    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('editable_table',{data: myData,data2:myData2});
+           }
+       });
+                   }
+                }); });
+
+
+
 
 
 app.get('/projects', urlencodedParser,(req,res)=>{
@@ -119,6 +158,26 @@ if (!error && response.statusCode == 200) {
 }
 }); });
 
+
+
+app.post('/verifyproject',urlencodedParser, function(req, res) { 
+                                                    
+    request.put({ url: "http://localhost:3000/api/verifyproject/"+req.body.id},function(error, response) {
+        if (!error && response.statusCode == 200) {
+           
+            request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData2 = JSON.parse(body);
+   }});
+request.get({ url: "http://localhost:3000/api/project" },function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData = JSON.parse(body);
+    res.render('projects',{data: myData,data2:myData2});
+   }
+
+});
+}
+}); });
 
 
 app.get('/editable_table', urlencodedParser,(req,res)=>{
@@ -237,6 +296,58 @@ app.post('/orders', urlencodedParser,(req,res)=>{
 
 
 
+    app.post('/verify',urlencodedParser, function(req, res) { 
+                                                    
+        request.put({ url: "http://localhost:3000/api/verifyexpert/"+req.body.id},function(error, response) {
+            if (!error && response.statusCode == 200) {
+               
+                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        myData2 = JSON.parse(body);
+       }});
+request.get({ url: "http://localhost:3000/api/experts" },function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+        myData = JSON.parse(body);
+        res.render('experts-table',{data: myData,data2:myData2});
+       }
+   });
+               }
+            }); });
+            app.post('/unban',urlencodedParser, function(req, res) { 
+                                                    
+                request.put({ url: "http://localhost:3000/api/unbanexpert/"+req.body.id},function(error, response) {
+                    if (!error && response.statusCode == 200) {
+                       
+                        request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                myData2 = JSON.parse(body);
+               }});
+        request.get({ url: "http://localhost:3000/api/experts" },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                myData = JSON.parse(body);
+                res.render('experts-table',{data: myData,data2:myData2});
+               }
+           });
+                       }
+                    }); });
+        
+                    app.post('/ban',urlencodedParser, function(req, res) { 
+                                                    
+                        request.put({ url: "http://localhost:3000/api/banexpert/"+req.body.id},function(error, response) {
+                            if (!error && response.statusCode == 200) {
+                               
+                                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData2 = JSON.parse(body);
+                       }});
+                request.get({ url: "http://localhost:3000/api/experts" },function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData = JSON.parse(body);
+                        res.render('experts-table',{data: myData,data2:myData2});
+                       }
+                   });
+                               }
+                            }); });
 
 
 app.get('/',(req,res)=>{
@@ -267,6 +378,10 @@ app.post('/', function(req, res) {
            });
    });
 
+
+
+
+   
    app.post('/account-setting', function(req, res) {
     request.put({ url: "http://localhost:3000/api/admin/"+myAdmin.id, form: req.body },function(error, response, body) {
             if (!error && response.statusCode == 200) {
@@ -320,9 +435,9 @@ app.post('/', function(req, res) {
                 }); });
 
 
-                app.post('/articles',urlencodedParser, function(req, res) { 
+                app.post('/verifyarticle',urlencodedParser, function(req, res) { 
                                                     
-                    request.delete({ url: "http://localhost:3000/api/articles/"+req.body.id},function(error, response) {
+                    request.put({ url: "http://localhost:3000/api/updatearticles/"+req.body.id},function(error, response) {
                         if (!error && response.statusCode == 200) {
                            
                             request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
@@ -337,6 +452,27 @@ app.post('/', function(req, res) {
                });
                            }
                         }); });
+
+
+                        //verify course 
+
+                        app.post('/verifycourse',urlencodedParser, function(req, res) { 
+                                                    
+                            request.put({ url: "http://localhost:3000/api/verifycourses/"+req.body.id},function(error, response) {
+                                if (!error && response.statusCode == 200) {
+                                   
+                                    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            myData2 = JSON.parse(body);
+                           }});
+                    request.get({ url: "http://localhost:3000/api/courses" },function(error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            myData = JSON.parse(body);
+                            res.render('courses',{data: myData,data2:myData2});
+                           }
+                       });
+                                   }
+                                }); });
 
 
                         app.post('/experts-table',urlencodedParser, function(req, res) { 

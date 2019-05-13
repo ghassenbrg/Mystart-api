@@ -9,7 +9,8 @@ const  CourseSchema = mongoose.Schema({
     price:Number,
     courseid:String,
    published:Boolean,
-   lessons:Array
+   lessons:Array,
+   verified:Boolean
 }, {
     timestamps: true
 });

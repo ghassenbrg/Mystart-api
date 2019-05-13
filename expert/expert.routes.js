@@ -49,7 +49,7 @@ else
         withdrawn:req.body.withdrawan,
         availableforwithdrawal:req.body.availableforwithdrawal,
         skills:req.body.skills,
-       
+        verified:req.body.verified
 
         
     });
@@ -200,6 +200,8 @@ exports.update = (req, res) => {
         withdrawn:req.body.withdrawan,
         availableforwithdrawal:req.body.availableforwithdrawal,
         skills:req.body.skills,
+        verified:req.body.verified
+
      
     }, {new: true})
     .then(expert => {
@@ -221,6 +223,110 @@ exports.update = (req, res) => {
     });
 };
 
+
+exports.verify = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "expert content can not be empty"
+        });
+    }
+
+    // Find and update expert with the request body
+    Expert.findByIdAndUpdate(req.params.expertId, {
+       verified:true,
+       banned:false
+
+     
+    }, {new: true})
+    .then(expert => {
+        if(!expert) {
+            return res.status(400).send({
+                message: " nothing to update " + req.params.expertId
+            });
+        }
+        res.send(expert);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "expert not found with id " + req.params.expertId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.expertId
+        });
+    });
+};
+
+
+
+
+exports.ban = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "expert content can not be empty"
+        });
+    }
+
+    // Find and update expert with the request body
+    Expert.findByIdAndUpdate(req.params.expertId, {
+      banned:true,
+
+     
+    }, {new: true})
+    .then(expert => {
+        if(!expert) {
+            return res.status(400).send({
+                message: " nothing to update " + req.params.expertId
+            });
+        }
+        res.send(expert);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "expert not found with id " + req.params.expertId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.expertId
+        });
+    });
+};
+
+
+exports.unban = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "expert content can not be empty"
+        });
+    }
+
+    // Find and update expert with the request body
+    Expert.findByIdAndUpdate(req.params.expertId, {
+      banned:false,
+
+     
+    }, {new: true})
+    .then(expert => {
+        if(!expert) {
+            return res.status(400).send({
+                message: " nothing to update " + req.params.expertId
+            });
+        }
+        res.send(expert);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "expert not found with id " + req.params.expertId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating note with id " + req.params.expertId
+        });
+    });
+};
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
     Expert.findByIdAndRemove(req.params.expertId)

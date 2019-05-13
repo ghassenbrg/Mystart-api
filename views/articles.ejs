@@ -301,7 +301,28 @@
                                           
                                            <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
                                           Delete
-                                        </button></td></tr>
+                                        </button></td>
+                                    
+                                        <% if (data[i].verified==false) { %>  
+                                            <td>     
+                                                   
+                                               
+                                                            <form class="form-horizontal" method="post" action="/verifyarticle">
+                                                             <div class="form-group" hidden="true">
+                                                                   
+                                                              <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                             </div>   <input class="btn btn-success btn-sm" type="submit" value="verify"/> </form>
+                                              </td>
+                                              <%}%>
+
+                                         <% if (data[i].verified==true) { %>
+                                         <td><p><strong><i class="fa fa-check"></i>Verified</strong></p></td>
+                                         <%}%>
+                                    
+                                    
+                                    
+                                    
+                                    </tr>
 
                        
                                  </form><% } %> 

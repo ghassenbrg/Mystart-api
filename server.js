@@ -554,6 +554,10 @@ let transporter=nodemailer.createTransport({
    
 });
 
+app.get('/configdata', (req, res) => {
+  
+    res.render('configdata',);
+   });
 
 
 

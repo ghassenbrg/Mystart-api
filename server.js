@@ -40,6 +40,7 @@ require('./admin/admin.controller.js')(app);
 require('./expert/expert.controller.js')(app);
 require('./courses/course.controller.js')(app);
 require('./order/order.controller.js')(app);
+require('./configdata/config.controller.js')(app);
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
@@ -60,6 +61,34 @@ process.exit();
 /*app.get('/editable_table', (req, res) => {
     res.render('editable_table',{name:user:});
 });*/
+
+
+app.post('/configdata', function(req, res) {
+    request.put({ url: "http://localhost:3000/api/configs/5cdb72e5f27e2517a44e274a", form: req.body },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                myData = JSON.parse(body);
+                request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9"},function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData2 = JSON.parse(body);
+                        res.render('configdata',{data2:myData2});
+                       }
+                       else {
+                    res.render(myData2);}
+                   });
+               }}); });
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/index', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -554,11 +583,19 @@ let transporter=nodemailer.createTransport({
    
 });
 
-app.get('/configdata', (req, res) => {
-  
-    res.render('configdata',);
-   });
-
+app.get('/configdata',urlencodedParser, function(req, res) { 
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+              if (!error && response.statusCode == 200) {
+                 
+                  myData2 = JSON.parse(body); }});
+                  request.get({ url: "http://localhost:3000/api/config" },function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData = JSON.parse(body);
+                        res.render('config',{data: myData,data2:myData2});
+                       }
+                   });
+            });
+                
 
 
 // listen on port 3000

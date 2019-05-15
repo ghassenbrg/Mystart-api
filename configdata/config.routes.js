@@ -35,6 +35,13 @@ exports.create = (req, res) => {
     });
 };
 
+
+
+
+
+
+
+
 // ______________________________Fetch Config
 exports.find = (req,res) => {
     Config.findOne()
@@ -42,7 +49,7 @@ exports.find = (req,res) => {
         res.send(config);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Something wrong while retrieving projects."
+            message: err.message || "Something wrong while retrieving config."
         });
     });
 };
@@ -78,7 +85,7 @@ exports.update = (req, res) => {
     }
 
     // Find and update config with the request body
-    Config.findByIdAndUpdate(req.body._id, {
+    Config.findByIdAndUpdate(req.params.id, {
         websiteTitle: req.body.websiteTitle,
         domainName: req.body.domainName,
         logo: req.body.logo,

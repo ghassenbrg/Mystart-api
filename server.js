@@ -89,7 +89,18 @@ app.post('/configdata', function(req, res) {
 
 
 
-
+               app.get('/feedback', (req, res) => {
+                request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                       
+                        myData = JSON.parse(body);
+                        res.render('feedback',{data: myData});
+                       }
+                   });
+                   
+                
+                
+            });
 
 
 

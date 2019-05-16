@@ -70,7 +70,12 @@ app.post('/configdata', function(req, res) {
                 request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9"},function(error, response, body) {
                     if (!error && response.statusCode == 200) {
                         myData2 = JSON.parse(body);
-                        res.render('configdata',{data2:myData2});
+                        request.get({ url: "http://localhost:3000/api/config" },function(error, response, body) {
+                            if (!error && response.statusCode == 200) {
+                                myData = JSON.parse(body);
+                               }
+                           });
+                        res.render('configdata',{data2:myData2,data: myData});
                        }
                        else {
                     res.render(myData2);}
@@ -591,7 +596,7 @@ app.get('/configdata',urlencodedParser, function(req, res) {
                   request.get({ url: "http://localhost:3000/api/config" },function(error, response, body) {
                     if (!error && response.statusCode == 200) {
                         myData = JSON.parse(body);
-                        res.render('config',{data: myData,data2:myData2});
+                        res.render('configdata',{data: myData,data2:myData2});
                        }
                    });
             });

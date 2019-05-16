@@ -229,14 +229,14 @@
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-3 col-xs-12 control-label" >Website title</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="websitetitle"name="websitetitle">
+                                            <input type="text" class="form-control" value="<%=data.websiteTitle%>" name="websitetitle">
                                         </div>
                                     </div>
                      
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-3 col-xs-12 control-label">Domain Name</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="domain Name" name="domainName">
+                                            <input type="text" class="form-control" value="<%=data.domainName%>" name="domainName">
                                         </div>
                                     </div>
                                    
@@ -249,7 +249,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-3 col-xs-12 control-label">Logo </label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="url" class="form-control" value="" name="logo">
+                                            <input type="url" class="form-control" value="<%=data.logo%>" name="logo">
                                             <p class="help-block">logo url </p>
                                         </div>
                                        
@@ -258,7 +258,7 @@
                                     <div class="form-group">
                                         <label class="col-md-2 col-sm-3 col-xs-12 control-label">Logo footer</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="url" class="form-control" name="slider">
+                                            <input type="url" class="form-control" name="logoFooter" value="<%=data.logoFooter%>">
                                             <p class="help-block">logo footer url </p>
                                         </div>
                                        
@@ -270,37 +270,36 @@
                                     <div class="form-group">
                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider title</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="" name="slider">
+                                            <input type="text" class="form-control" value="<%=data.slider[0]%>" name="slider">
                                          
 
                                         </div>
                                     </div>
 
-                                        <div class="form-group">
-                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider desc</label>
-                                            <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <textarea rows="4" cols="50" name="comment" form="usrform">enter description here...
-                                                    </textarea>
-    
-                                            </div>
-                                        </div>
+                                 
                                             <div class="form-group">
                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider img</label>
                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <input type="text" class="form-control" value="img URL" name="slider title">
+                                                    <input type="url" class="form-control" value="<%=data.slider[1]%>" name="slider">
                                                  
         
                                                 </div>
                                             </div>
                                    
-                             
+                                            <div class="form-group">
+                                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider desc</label>
+                                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                                    <textarea rows="4" cols="50"  class="form-control" name="slider"> <%=data.slider[2]%></textarea>
+        
+                                                </div>
+                                            </div>
                                 </fieldset>
                                 <fieldset class="fieldset">
                                     <h3 class="fieldset-title">Succes story</h3>
                                     <div class="form-group">
                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label">Nbr of succes story</label>
                                         <div class="col-md-2 col-sm-3 col-xs-8">
-                                            <input type="number" class="form-control" value="hellsing125" name="successStoryNbr">
+                                            <input type="number" class="form-control" value="<%=data.successStoryNbr%>" name="successStoryNbr">
                                             
                                         </div>
                                     </div>
@@ -313,29 +312,29 @@
                                     <div class="form-group">
                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label"> title</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="" name="entrepreneur">
+                                            <input type="text" class="form-control" value="<%=data.entrepreneur[0] %>" name="entrepreneur">
                                          
 
                                         </div>
                                     </div>
 
-                                        <div class="form-group">
-                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider desc</label>
-                                            <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <textarea rows="4" cols="50" name="comment" form="usrform">enter description here...
-                                                    </textarea>
-    
-                                            </div>
-                                        </div>
+                  
                                             <div class="form-group">
                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider img</label>
                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <input type="text" class="form-control" value="img URL" name="slider title">
+                                                    <input type="url" class="form-control" value="<%=data.entrepreneur[1] %>" name="entrepreneur">
                                                  
         
                                                 </div>
                                             </div>
-                                   
+                                                         <div class="form-group">
+                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label">slider desc</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <textarea rows="4" cols="50"  class="form-control" name="entrepreneur" value="<%=data.entrepreneur[2] %>" >enter description here...
+                                                    </textarea>
+    
+                                                </div>
+                                            </div>
                              
                                 </fieldset>
                                 
@@ -344,30 +343,30 @@
                                     <div class="form-group">
                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label">Title</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="" name="investor">
+                                            <input type="text" class="form-control" value="<%=data.investor[0] %>" name="investor">
                                          
 
                                         </div>
                                     </div>
 
-                                        <div class="form-group">
-                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label"> desc</label>
-                                            <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <textarea rows="4" cols="50" name="comment" form="usrform">enter description here...
-                                                    </textarea>
-    
-                                            </div>
-                                        </div>
+                                       
                                             <div class="form-group">
                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label"> img</label>
                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <input type="text" class="form-control" value="img URL" name="slider title">
+                                                    <input type="url" class="form-control" value="<%=data.investor[1] %>" name="investor">
                                                  
         
                                                 </div>
                                             </div>
                                    
-                             
+                                            <div class="form-group">
+                                                <label class="col-md-2  col-sm-3 col-xs-12 control-label"> desc</label>
+                                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                                    <textarea rows="4" cols="50" class="form-control" value="<%=data.investor[2] %>" name="investor" >enter description here...
+                                                        </textarea>
+        
+                                                </div>
+                                            </div>
                                 </fieldset>
                                 
                                 <fieldset class="fieldset">
@@ -375,30 +374,30 @@
                                     <div class="form-group">
                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label"> title</label>
                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                            <input type="text" class="form-control" value="" name="expert">
+                                            <input type="text" class="form-control" value="<%=data.expert[0] %>" name="expert">
                                          
 
                                         </div>
                                     </div>
 
-                                        <div class="form-group">
-                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label">desc</label>
-                                            <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <textarea rows="4" cols="50" name="comment" form="usrform">enter description here...
-                                                    </textarea>
-    
-                                            </div>
-                                        </div>
+                               
                                             <div class="form-group">
                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label"> img</label>
                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <input type="text" class="form-control" value="img URL" name="slider title">
+                                                    <input type="url" class="form-control" value="<%=data.expert[1] %>" name="expert">
                                                  
         
                                                 </div>
                                             </div>
                                    
-                             
+                                      <div class="form-group">
+                                            <label class="col-md-2  col-sm-3 col-xs-12 control-label">desc</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <textarea rows="4" cols="50" name="expert" class="form-control" value="<%=data.expert[2] %>">enter description here...
+                                                    </textarea>
+    
+                                            </div>
+                                        </div>
                                 </fieldset>
 
 
@@ -408,29 +407,29 @@
                                         <div class="form-group">
                                             <label class="col-md-2  col-sm-3 col-xs-12 control-label"> title</label>
                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                <input type="text" class="form-control" value="" name="video">
+                                                <input type="text" class="form-control" value="<%=data.video[0] %>" name="video">
                                              
     
                                             </div>
                                         </div>
     
-                                            <div class="form-group">
-                                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">desc</label>
-                                                <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <textarea rows="4" cols="50" name="comment" form="usrform">enter description here...
-                                                        </textarea>
-        
-                                                </div>
-                                            </div>
+                                            
                                                 <div class="form-group">
                                                     <label class="col-md-2  col-sm-3 col-xs-12 control-label"> img</label>
                                                     <div class="col-md-10 col-sm-9 col-xs-12">
-                                                        <input type="text" class="form-control" value="img URL" name="slider title">
+                                                        <input type="url" class="form-control" value="<%=data.video[1] %>" name="slider title">
                                                      
             
                                                     </div>
                                                 </div>
-                                       
+                                                <div class="form-group">
+                                                    <label class="col-md-2  col-sm-3 col-xs-12 control-label">desc</label>
+                                                    <div class="col-md-10 col-sm-9 col-xs-12">
+                                                        <textarea rows="4" cols="50" name="video" value="<%=data.video[2] %>" >enter description here...
+                                                            </textarea>
+            
+                                                    </div>
+                                                </div>
                                  
                                     </fieldset>
 
@@ -441,7 +440,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label"> Name</label>
                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                    <input type="text" class="form-control" value="" name="Feedback">
+                                                    <input type="text" class="form-control" value="<%=data.feedback[0]%>" name="Feedback">
                                                  
         
                                                 </div>
@@ -450,14 +449,14 @@
                                                 <div class="form-group">
                                                     <label class="col-md-2  col-sm-3 col-xs-12 control-label">position</label>
                                                     <div class="col-md-10 col-sm-9 col-xs-12">
-                                                            <input type="text" class="form-control" value="" name="slider title">
+                                                            <input type="text" class="form-control" value="<%=data.feedback[1]%>" name="Feedback">
             
                                                     </div>
                                                 </div>
                                                     <div class="form-group">
                                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label"> review</label>
                                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                                            <input type="text" class="form-control" value="review" name="slider title">
+                                                            <input type="text" class="form-control" value="<%=data.feedback[2]%>" name="Feedback">
                                                          
                 
                                                         </div>
@@ -465,7 +464,7 @@
                                                     <div class="form-group">
                                                             <label class="col-md-2  col-sm-3 col-xs-12 control-label"> img</label>
                                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                <input type="text" class="form-control" value="img URL" name="slider title">
+                                                                <input type="text" class="form-control" value="<%=data.feedback[3]%>" name="Feedback">
                                                              
                     
                                                             </div>
@@ -480,7 +479,7 @@
                                                     <label class="col-md-2  col-sm-3 col-xs-12 control-label"> Facebook</label>
                                                     <div class="col-md-10 col-sm-9 col-xs-12">
                                                           
-                                                                    <input type="text" class="form-control" value="facebook url" name=""  >  
+                                                                    <input type="text" class="form-control" value="<%=data.socialMedia[0]%>" name="socialMedia"  >  
                                                    
                                                      
             
@@ -490,7 +489,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-2  col-sm-3 col-xs-12 control-label">linkedin</label>
                                                         <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                <input type="text" class="form-control" value="linkedin url" name="slider title">
+                                                                <input type="text" class="form-control" value="<%=data.socialMedia[1]%>" name="socialMedia">
                                                              
                     
                                                             </div>
@@ -498,7 +497,7 @@
                                                     <div class="form-group">
                                                             <label class="col-md-2  col-sm-3 col-xs-12 control-label">youtube</label>
                                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                    <input type="text" class="form-control" value="youtube url" name="slider title">
+                                                                    <input type="text" class="form-control" value="<%=data.socialMedia[2]%>" name="socialMedia">
                                                                  
                         
                                                                 </div>
@@ -506,7 +505,7 @@
                                                         <div class="form-group">
                                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">twitter</label>
                                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                        <input type="text" class="form-control" value="twitter url" name="slider title">
+                                                                        <input type="text" class="form-control" value="<%=data.socialMedia[3]%>" name="socialMedia">
                                                                      
                             
                                                                     </div>
@@ -514,7 +513,7 @@
                                                             <div class="form-group">
                                                                     <label class="col-md-2  col-sm-3 col-xs-12 control-label">instagram</label>
                                                                     <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                            <input type="text" class="form-control" value="instagram url" name="slider title">
+                                                                            <input type="text" class="form-control" value="<%=data.socialMedia[4]%>" name="socialMedia">
                                                                          
                                 
                                                                         </div>
@@ -529,7 +528,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-2  col-sm-3 col-xs-12 control-label">playstore</label>
                                                             <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                    <input type="text" class="form-control" value="playstore" name="slider title">
+                                                                    <input type="text" class="form-control" value="<%=data.playStore%>" name="slider title">
                                                                  
                         
                                                                 </div>
@@ -537,7 +536,7 @@
                                                         <div class="form-group">
                                                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">Appstore</label>
                                                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                                                        <input type="text" class="form-control" value="Appstore" name="slider title">
+                                                                        <input type="text" class="form-control" value="<%=data.appStore%>" name="slider title">
                                                                      
                             
                                                                     </div>

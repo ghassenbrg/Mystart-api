@@ -11,6 +11,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var urlencodedParser=bodyParser.urlencoded({extended:false});
+var moment = require('moment')
 // Swagger
 const docs = require('./swagger.json');
 const swaggerUi = require('swagger-ui-express');
@@ -61,6 +62,27 @@ process.exit();
 /*app.get('/editable_table', (req, res) => {
     res.render('editable_table',{name:user:});
 });*/
+
+app.get('/addEvent', (req, res) => {
+    request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            //res.render('index',{data: body});
+            myData = JSON.parse(body);
+            res.render('addEvent',{data: myData,moment:moment});
+           }
+       });
+       
+    
+    
+});
+
+
+
+
+
+
+
+
 
 
 app.post('/configdata', function(req, res) {
@@ -117,6 +139,10 @@ app.get('/index', (req, res) => {
     
     
 });
+
+
+
+
 
 app.get('/account-setting', (req, res) => {
   

@@ -12,16 +12,23 @@ exports.create = (req, res) => {
 
     // Create a user
     const event = new Event({
-        
+        adminid:req.body.adminid,
+        organizerName:req.body.organizerName,
+        overview:req.body.overview,
+        location:req.body.location,
+        startTime:req.body.startTime,
+        endTime:req.body.endTime,
+        organizerPic:req.body.organizerPic,
+        totalSlot:req.body.totalSlot,
+        cost:req.body.cost,
+        views:req.body.views,
         title: req.body.title, 
         description: req.body.description, 
         coverimg:req.body.coverimg, 
-        placeName:req.body.placeName,
         mapcode:req.body.mapcode,
         startDate:req.body.startDate,
         endDate:req.body.endDate,
-        organizer:req.body.organizer,
-        adminid:req.body.adminids
+      
        
     });
 
@@ -91,14 +98,22 @@ exports.update = (req, res) => {
 
     // Find and update user with the request body
     Event.findByIdAndUpdate(req.params.eventId, {
-       title: req.body.title, 
+        adminid:req.body.adminid,
+        organizerName:req.body.organizerName,
+        overview:req.body.overview,
+        location:req.body.location,
+        startTime:req.body.startTime,
+        endTime:req.body.endTime,
+        organizerPic:req.body.organizerPic,
+        totalSlot:req.body.totalSlot,
+        cost:req.body.cost,
+        views:req.body.views,
+        title: req.body.title, 
         description: req.body.description, 
         coverimg:req.body.coverimg, 
-        placeName:req.body.placeName,
         mapcode:req.body.mapcode,
         startDate:req.body.startDate,
         endDate:req.body.endDate,
-        organizer:req.body.organizer
     }, {new: true})
     .then(event => {
         if(!event) {

@@ -5,14 +5,23 @@ const EventSchema = mongoose.Schema({
 
     
     
-    title: String, 
+    adminid:String,
+    mapRef:String,
+    organizerName:String,
+    title: String,
+    overview:String,
+    location:String,
+    startTime:Date,
+    endTime:Date,
+    organizerPosition:String,
+    organizerPic:String,
     description: String,
     coverimg:String,
-    placeName:String,
-    mapcode:String,
-    startDate:Date, 
-    endDate:Date,
-    organizer:String
+    totalSlot:Number,
+    cost:Number,
+    views:Number,
+    published:Boolean,
+  
 }, {
     timestamps: true
 });

@@ -1,6 +1,7 @@
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
 
+
 <body>
     <section id="container">
     <!--header start-->
@@ -231,7 +232,15 @@
                              </span>
                         </header>
                         <div class="panel-body">
-                            <form action="#" class="form-horizontal ">
+                            <form class="form-horizontal " method="post" action="/addEvent">
+                                    <div class="form-group">
+                                                       
+                                          
+                                             <div class="form-group" hidden="true">
+                                                   
+                                              <input type="text" id="id" class="form-control" name="id" value="<%=data._id %>">
+                                  </div>
+                                    </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Event title</label>
                                     <div class="col-md-4 col-xs-11">
@@ -241,28 +250,181 @@
                                        
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Event date</label>
-                                    <div class="col-md-4 col-xs-11">
-                                        <input type="date" name="bday"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
-                                     
-                                        
-                                        <span class="help-block">Select date</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Event date</label>
-                                    <div class="col-md-4 col-xs-11">
-                                        <input type="date" name="bday"  min="<%=moment().format('MMM-DD-YYYY')%>"  required>
-                                     
-                                        
-                                        <span class="help-block">Select date</span>
-                                    </div>
-                                </div>
-                                
                               
-                                
+                            
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">description</label>
+                                    <div class="col-md-4 col-sm-9 col-xs-12">
+                                        <textarea rows="4" cols="50"  class="form-control" name=" description"> Enter description here</textarea>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Over view</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="text" name="overview" id="overview" class="form-control" required>
+                                     
+                                        
+                                     
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Basic select</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <select class="form-control" style="width: 300px" id="source">
+                                           
+                                            <optgroup label="Tunis" name="location">
+                                                
+                                                <option value="Ariana">Ariana</option>
+                                                <option value="Beja"> Beja</option>
+                                                <option value="Ben Arous">Ben Arous</option>
+                                                <option value="Bizerte"> Bizerte </option>
+                                                <option value="Gabes"> Gabes</option>
+                                                <option value="Gafsa"> Gafsa</option>
+                                                <option value="Jendouba">Jendouba</option>
+                                                <option value="Kairouan">Kairouan</option>
+                                                <option value="Kasserine">Kasserine</option>
+                                                <option value="Kébili">Kébili </option>
+                                                <option value="Mahdia">Mahdia</option>
+                                                <option value="Monastir">Monastir</option>
+                                                <option value="La Manouba">La Manouba</option>
+                                                <option value="Médenine"> Médenine</option>
+                                                <option value="Nabeul">Nabeul</option>
+                                                <option value="Sfax">Sfax</option>
+                                                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                                                <option value="Siliana">Siliana</option>
+                                                <option value="Sousse">Sousse</option>
+                                                <option value="Tataouine">Tataouine</option>
+                                                <option value="Tozeur">Tozeur</option>
+                                                <option value="Tunis">Tunis</option>
+                                                <option value="Zaghouan">Zaghouan</option>
+                                              
+                                            </optgroup>
+                                           
+                                        
+                                        </select>
+                                    </div>
+                                </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">Cover img</label>
+                                            <div class="col-md-4 col-xs-11">
+                                                <input type="url" class="form-control" value="" name="coverimg">
+                                             
     
+                                            
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">total slot</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="number" class="form-control" value="250" name="totalSlot">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">cost</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="number" class="form-control" value="20" name="cost">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">startTime</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="date" name="startDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
+                                      
+                                        
+                                        <span class="help-block">Select Time</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="appt">Choose a time :</label>
+                                    <div class="col-md-4 col-xs-11">
+                                    <input type="time" id="appt" name="startTime" min="9:00" max="18:00" required>
+                                    
+                                    </div>
+                                 
+                                </div>
+                                    
+                               
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">endTime</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="date" name="endDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
+                                     
+                                        
+                                        <span class="help-block">Select date</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3" for="appt">Choose a time :</label>
+                                    <div class="col-md-4 col-xs-11">
+                                    <input type="time" id="appt" name="endTime"
+                                           min="9:00" max="18:00" required>
+                                    
+                                    </div>
+                                 
+                                </div>
+                                <div class="form-group">
+                                        <label class="control-label col-md-3">ticketUrl</label>
+                                        <div class="col-md-4 col-xs-11">
+                                            <input type="url" class="form-control" value="" name="coverimg">
+                                         
+
+                                        
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="control-label col-md-3">organizerName</label>
+                                    <div class="col-md-4 col-xs-11">
+                                        <input type="text" class="form-control" value="" name="organizerName">
+                                     
+
+                                    
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="control-label col-md-3">organizerPosition </label>
+                                <div class="col-md-4 col-xs-11">
+                                    <input type="text" class="form-control" value="" name="organizerPosition">
+                                 
+
+                                
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <label class="control-label col-md-3">organizerPic</label>
+                            <div class="col-md-4 col-xs-11">
+                                <input type="url" class="form-control" value="" name="organizerPic">
+                             
+
+                            
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="col-sm-3 control-label">Radio</label>
+
+                        <div class="col-sm-9 icheck " >
+
+                            <div class="icheck-primary single-row">
+                                <div class="radio ">
+                                    <input tabindex="3" type="radio"  name="published" value="true">
+                                    <label>published </label>
+                                </div>
+                            </div>
+                            <div class="minimal-red single-row">
+                                <div class="radio ">
+                                    <input tabindex="3" type="radio"  name="unpublished" value="false">
+                                    <label>unpublished </label>
+                                </div>
+                            </div>
+                            </div>
+                </div>
+                            <div class="form-group">
+                                <div class="col-sm-5 control-label ">
+                                    <input class="btn btn-primary" type="submit" value="Add Event">
+                                </div>
+                            </div>
                             </form>
                         </div>
                       

@@ -2,10 +2,21 @@ const mongoose = require('mongoose');
 
 const ArticleSchema = mongoose.Schema({
     adminid:String,
-    title: String, 
+    mapRef:String,
+    organizerName:String,
+    title: String,
+    overview:String,
+    location:String,
+    startTime:Date,
+    endTime:Date,
+    organizerPosition:String,
+    organizerPic:String,
     description: String,
-    coverimg:String,
+    coverImg:String,
+    totalSlot:Number,
+    cost:Number,
     views:Number,
+    
     visibility:Boolean,
     authorized:String,
     verified:Boolean,

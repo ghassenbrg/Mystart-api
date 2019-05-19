@@ -62,6 +62,22 @@ process.exit();
 /*app.get('/editable_table', (req, res) => {
     res.render('editable_table',{name:user:});
 });*/
+app.get('/events', (req, res) => {
+    request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          
+            myData2 = JSON.parse(body);
+            request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    myData = JSON.parse(body);
+                    res.render('events',{data: myData,data2:myData2});
+                   }
+               });
+        }});
+           
+        
+       })
+
 
 app.get('/addEvent', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
@@ -71,15 +87,73 @@ app.get('/addEvent', (req, res) => {
             res.render('addEvent',{data: myData,moment:moment});
            }
        });
+
+
+
+
        
     
     
 });
 
+app.post('/publishevent',urlencodedParser, function(req, res) { 
+                                        
+    request.put({ url: "http://localhost:3000/api/publishevents/"+req.body.id},function(error, response) {
+        if (!error && response.statusCode == 200) {
+           
+            request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData2 = JSON.parse(body);
+   }});
+request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData = JSON.parse(body);
+    res.render('events',{data: myData,data2:myData2});
+   }
+});
+           }
+        }); });
+
+        app.post('/unpublishevent',urlencodedParser, function(req, res) { 
+                                        
+            request.put({ url: "http://localhost:3000/api/unpublishevents/"+req.body.id},function(error, response) {
+                if (!error && response.statusCode == 200) {
+                   
+                    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+        request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('events',{data: myData,data2:myData2});
+           }
+        });
+                   }
+                }); });
+        
+
+
+app.post('/', function(req, res) {
+    request.post({ url: "http://localhost:3000/api/admin/login", form: req.body },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                global.myAdmin = JSON.parse(body);
+                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData2 = JSON.parse(body);
+                        res.render('index',{data:myData2});
+                       }
+                       else {
+                    res.render(myData2);}
+                   });
+               }
+        
+           });
+   });
 
 app.post('/addEvent',function(req, res) {
    
-           request.post({ url: "http://localhost:3000/api/events/", form: req.body },function(error, response, body) {
+           request.post({ url: "http://localhost:3000/api/events",form: req.body },function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 myData = JSON.parse(body);
                 request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9"},function(error, response, body) {
@@ -90,7 +164,9 @@ app.post('/addEvent',function(req, res) {
                        else {
                     res.render(myData2);}
                    });
-               }}); });
+               }
+            else {console.log(req.body)}
+            }); });
        
        
     

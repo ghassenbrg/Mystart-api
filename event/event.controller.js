@@ -7,6 +7,9 @@ module.exports = (app) => {
     // Retrieve all projects
     app.get('/api/events', events.findAll);
 
+    app.put('/api/publishevents/:eventId', events.publish);
+    app.put('/api/unpublishevents/:eventId', events.unpublish);
+
     // Retrieve a project
     app.get('/api/events/:eventId', events.findOne);
 

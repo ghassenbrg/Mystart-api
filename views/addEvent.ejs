@@ -271,11 +271,11 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Basic select</label>
                                     <div class="col-md-4 col-xs-11">
-                                        <select class="form-control" style="width: 300px" id="source">
+                                        <select class="form-control" style="width: 300px" id="source" name="location">
                                            
-                                            <optgroup label="Tunis" name="location">
+                                            <optgroup label="Tunis" >
                                                 
-                                                <option value="Ariana">Ariana</option>
+                                                <option value="Ariana" >Ariana</option>
                                                 <option value="Beja"> Beja</option>
                                                 <option value="Ben Arous">Ben Arous</option>
                                                 <option value="Bizerte"> Bizerte </option>
@@ -331,7 +331,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">startTime</label>
                                     <div class="col-md-4 col-xs-11">
-                                        <input type="date" name="startDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
+                                        <input class="form-control" type="date" name="startDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
                                       
                                         
                                         <span class="help-block">Select Time</span>
@@ -340,7 +340,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="appt">Choose a time :</label>
                                     <div class="col-md-4 col-xs-11">
-                                    <input type="time" id="appt" name="startTime" min="9:00" max="18:00" required>
+                                    <input class="form-control" type="time" id="appt" name="startDate" min="9:00" max="18:00" required>
                                     
                                     </div>
                                  
@@ -350,7 +350,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3">endTime</label>
                                     <div class="col-md-4 col-xs-11">
-                                        <input type="date" name="endDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
+                                        <input class="form-control" type="date" name="endDate"  min="<%=moment().format('MMM-DD-YYYY')%>" max="2020-12-31" required>
                                      
                                         
                                         <span class="help-block">Select date</span>
@@ -359,7 +359,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3" for="appt">Choose a time :</label>
                                     <div class="col-md-4 col-xs-11">
-                                    <input type="time" id="appt" name="endTime"
+                                    <input class="form-control" type="time" id="appt" name="endDate"
                                            min="9:00" max="18:00" required>
                                     
                                     </div>
@@ -368,7 +368,7 @@
                                 <div class="form-group">
                                         <label class="control-label col-md-3">ticketUrl</label>
                                         <div class="col-md-4 col-xs-11">
-                                            <input type="url" class="form-control" value="" name="coverimg">
+                                            <input type="url" class="form-control" value="" name="ticketUrl">
                                          
 
                                         
@@ -402,19 +402,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                        <label class="col-sm-3 control-label">Radio</label>
+                        <label class="col-sm-3 control-label">published</label>
 
                         <div class="col-sm-9 icheck " >
 
                             <div class="icheck-primary single-row">
                                 <div class="radio ">
-                                    <input tabindex="3" type="radio"  name="published" value="true">
+                                    <input tabindex="3" type="radio"  name="published" value=true>
                                     <label>published </label>
                                 </div>
                             </div>
                             <div class="minimal-red single-row">
                                 <div class="radio ">
-                                    <input tabindex="3" type="radio"  name="unpublished" value="false">
+                                    <input tabindex="3" type="radio"  name="published" value=false>
                                     <label>unpublished </label>
                                 </div>
                             </div>

@@ -1,8 +1,8 @@
-
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
-<body>
 
+<body>
+       
 <section id="container" >
 <!--header start-->
 <header class="header fixed-top clearfix">
@@ -105,11 +105,6 @@
     
     </ul>
     <!--  notification end -->
-
-
-
-
-
 </div>
 <div class="top-nav clearfix">
     <!--form-control medium & user info start-->
@@ -131,7 +126,7 @@
             </ul>
         </li>
         <!-- user login dropdown end -->
-    
+      
     </ul>
     <!--search & user info end-->
 </div>
@@ -147,20 +142,19 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            
             <li>
-                <a  class="active" href="/editable_table">
+                <a   href="/editable_table">
                     <i class="fa fa-users"></i>
                     <span>Manage users</span>
                 </a>
             </li>
+ 
             <li>
-                <a   href="/experts-table">
-                    <i class="fa fa-star"></i>
-                    <span>Manage experts</span>
-                </a>
-            </li>
-        
+                    <a   href="/experts-table">
+                        <i class="fa fa-star"></i>
+                        <span>Manage experts</span>
+                    </a>
+                </li>
 
             <li>
                 <a   href="/projects">
@@ -171,7 +165,7 @@
                 </a>
             </li>
             <li>
-                <a  href="/courses">
+                <a   href="/courses">
                     <i class="fa fa-book"></i> 
                     <span>Manage courses</span>
                 </a>
@@ -190,7 +184,7 @@
                 </a>
             </li>
             <li>
-                <a   href="/events" >
+                <a  class="active" href="/events" >
                     <i class="fa fa-calendar"></i>
                     <span>Manage Events</span>
                 </a>
@@ -215,6 +209,7 @@
                     </a>
             </li>
            
+           
             
            
         
@@ -232,7 +227,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        User Table
+                       events Table
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -243,124 +238,111 @@
                         <div class="adv-table editable-table ">
                            
                             <div class="space15"></div>
-                            <table class="table table-hover p-table" id="editable-sample">
+                            <table class="table table-hover p-table" >
                                 <thead>
                                 <tr>
-                                    <th>User Name</th>
-                                    <th>First Name</th>
-                                    <th>Number</th>
-                                    <th>Sexe</th>
-                                  <th>picture</th>
-                                    <th>mailing</th>
-                                    <th>Delete</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Coverimg</th>
+                                    <th>Cost</th>
+                                    <th>Published</th>
+                                    <th>view</th> 
+                                    <th>Delete</th> 
+                                   
+                               
                                 </tr>
                                 </thead>
                                 <tbody>   
                                   
-                                   
-                                        <%  for(let i=0; i < data.length; i++) { %>
-                                         
-                                                
-                                      <tr class="">
-                                      
-                                        <td name="firstname"><%=data[i].firstname %></td>
-                                        <td name="lastname"><%=data[i].lastname %></td>
-
-                                    <td name="email"><%=data[i].phone %></td>
-
-                                    <td name="picture" ><a href="#"><img alt="image" class="" src="<%=data[i].profilepic%>"></a>
-                                    <td><a class="sexe" ><%=data[i].sexe %></a></td>
-                                   
-                           
-
                                     
-
-
-
-
-
-
-
-                              
-                                    <td>     <span class="form-group">
-                                            <form class="form-horizontal" method="post" action="/mail-compose">
-                                             <span class="form-group" hidden="true">
-                    
-                                      
-                                                  <label for="id" class="">id:</label> <input type="text" tabindex="1" id="email" class="form-control" name="email" value="<%=data[i].email %>">
-                                             </span>  <input class="btn btn-primary btn-sm" type="submit" value="mail" text-align="text-center"/></span>
+                                        <%  for(let i=0; i < data.length; i++) { %>
+                                           
+                                <tr class="">
                                   
-                                            </form></td>
-                                   <!-- form of delete-->
+                                    <td name="Title"><%=data[i].title%></td>
+                                    <td name="Description"><%=data[i].description%></td>
+                                    <td name="published" ><a href="#"><img alt="image" class="" src="<%=data[i].coverImg%>"></a>
                                    
-                                        
-                                   <div class="modal fade" id="confirm-delete<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-                                            </div>
-                                        
-                                            <div class="modal-body">
-                                                <p>You are about to delete <strong><%=data[i].username%></strong>, this procedure is irreversible.</p>
-                                                <p>Do you want to proceed?</p>
-                                                <p class="debug-url"></p>
-                                            </div>
-                                            
-                                                    
-                                            <div class="modal-footer">
-                                                    
+                 
+                                    <td><a class="sexe" ><%=data[i].cost %>$</a></td>
+                                    <% if (data[i].published==false) { %>  
+                                        <td>     
+                                                <div class="form-group">
+                                           
+                                                        <form class="form-horizontal" method="post" action="/publishevent">
+                                                         <div class="form-group" hidden="true">
+                                                               
+                                                          <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
+                                                         </div>   <input class="btn btn-warning btn-sm" type="submit" value="publish"/> </form></div>
+                                          </td>
+                                        <%}%>
+                                        <% if (data[i].published==true) { %>  
+                                            <td>     
                                                     <div class="form-group">
-                                                           
-                                                            <form class="form-horizontal" method="post" action="/editable_table">
+                                               
+                                                            <form class="form-horizontal" method="post" action="/unpublishevent">
                                                              <div class="form-group" hidden="true">
                                                                    
                                                               <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
-                                                             </div>  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button> <input class="btn btn-danger btn-sm" type="submit" value="Delete"/> </form></div>
-                                            </div>
+                                                             </div>   <input class="btn btn-default btn-sm" type="submit" value="unpublish"/> </form></div>
+                                              </td>
+                                            <%}%>
+                
+                                    
+                                         <td>   
+                                        
+                                        <div class="form-group">
+                                        <a  class="btn btn-primary btn-sm"> view </a>  
                                         </div>
-                                    </div>
-                                </div>
-                                  
-                                              <td>
+                                        </td>
+                                        <td>   
                                               
-                                               <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
-                                              Delete
-                                            </button></td>
-                                            <% if (data[i].banned==false) { %>  
-                                                <td>     
+                                                <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#confirm-delete<%=i%>">
+                                               Delete
+                                             </button></td>
+                                           <div class="modal fade" id="confirm-delete<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                             <div class="modal-dialog">
+                                             <div class="modal-content">
+                                            
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                                </div>
+                                            
+                                                <div class="modal-body">
+                                                    <p>You are about to delete <strong><%=data[i].titre%></strong>, this procedure is irreversible.</p>
+                                                    <p>Do you want to proceed?</p>
+                                                    <p class="debug-url"></p>
+                                                </div>
+                                                
+                                                        
+                                                <div class="modal-footer">
+                                                        
                                                         <div class="form-group">
-                                                   
-                                                                <form class="form-horizontal" method="post" action="/banuser">
+                                                               
+                                                                <form class="form-horizontal" method="post" action="/deleteevents">
                                                                  <div class="form-group" hidden="true">
                                                                        
                                                                   <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
-                                                                 </div>   <input class="btn btn-warning btn-sm" type="submit" value="ban"/> </form></div>
-                                                  </td>
-                                                <%}%>
-                                                <% if (data[i].banned==true) { %>  
-                                                    <td>     
-                                                            <div class="form-group">
-                                                       
-                                                                    <form class="form-horizontal" method="post" action="/unbanuser">
-                                                                     <div class="form-group" hidden="true">
-                                                                           
-                                                                      <input type="text" id="id" class="form-control" name="id" value="<%=data[i]._id %>">
-                                                                     </div>   <input class="btn btn-default btn-sm" type="submit" value="unban"/> </form></div>
-                                                      </td>
-                                                    <%}%>
-                                                </tr>
-                                     </form><% } %> 
-
-
-
-
-
-      
+                                                                 </div>  <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button> <input class="btn btn-danger btn-sm" type="submit" value="Delete"/> </form></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                      
+                                              
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            </tr>
+    
                                
-
+                                         </form>
+                                <% } %> 
+                               
+  
                                 
                                 </tbody>
                             </table>
@@ -631,16 +613,16 @@
 
 
 <!--script for this page only-->
-
+<script>
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+            
+            $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+        });
+    </script>
 
 <!-- END JAVASCRIPTS -->
 
-<script>
-    $('#confirm-delete').on('show.bs.modal', function(e) {
-        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-        
-      
-    });
-</script>
+
 </body>
 </html>

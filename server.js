@@ -96,6 +96,27 @@ app.get('/addEvent', (req, res) => {
     
 });
 
+app.post('/deleteEvent',urlencodedParser, function(req, res) { 
+                                                    
+    request.delete({ url: "http://localhost:3000/api/events/"+req.body.id},function(error, response) {
+        if (!error && response.statusCode == 200) {
+           
+            request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData2 = JSON.parse(body);
+   }});
+request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+if (!error && response.statusCode == 200) {
+    myData = JSON.parse(body);
+    res.render('events',{data: myData,data2:myData2});
+   }
+
+});
+}
+}); });
+
+
+
 app.post('/publishevent',urlencodedParser, function(req, res) { 
                                         
     request.put({ url: "http://localhost:3000/api/publishevents/"+req.body.id},function(error, response) {

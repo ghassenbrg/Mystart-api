@@ -75,9 +75,21 @@ app.post('/editEventpage', (req, res) => {
        })}})});
 
 
-      
-
-
+       app.post('/editEvent', (req, res) => {
+           request.put({ url: "http://localhost:3000/api/events/"+req.body.id, form: req.body },function(error, response) {
+        if (!error && response.statusCode == 200) {
+       request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                  
+                    myData2 = JSON.parse(body);
+                    request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            myData = JSON.parse(body);
+                            res.render('events',{data: myData,data2:myData2});
+                           }      }); }});}})
+                        });
+                       
+                 
 
 
 

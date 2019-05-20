@@ -233,7 +233,10 @@
                         </header>
                         <div class="panel-body">
                             <form class="form-horizontal " method="post" action="/editEvent">
-                              
+                                <div class="form-group" hidden="true">
+                                                               
+                                        <input type="text" id="id" class="form-control" name="id" value="<%=data2._id %>">
+                                       </div> 
                                 <div class="form-group">
                                     <label class="control-label col-md-3">Event title</label>
                                     <div class="col-md-4 col-xs-11">
@@ -394,16 +397,14 @@
                             
                     </div>
                 </div>
-              
-                            <div class="form-group">
-                                    <div class="form-group" hidden="true">
-                                                   
-                                            <input type="text" id="id" class="form-control" name="id" value="<%=data2._id %>">
-                                    </div>
-                                <div class="col-sm-5 control-label ">
-                                    <input class="btn btn-primary" type="submit" value="Edit Event">
-                                </div>
-                            </div>
+                <div class="form-group">
+                                           
+                    
+                              
+                       
+                           <div class="col-sm-5 control-label "> <input class="btn btn-primary" type="submit" value="Edit"/> </div></div>
+                           
+                             
                             </form>
                         </div>
                       

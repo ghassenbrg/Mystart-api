@@ -56,7 +56,7 @@ exports.findAll = (req,res) => {
 
 // Find a single event by id
 exports.findOne = (req, res) => {
-    Events.findById(req.params.eventId)
+    Event.findById(req.params.eventId)
     .then(event => {
         if(!event) {
             return res.status(404).send({

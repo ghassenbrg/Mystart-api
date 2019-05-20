@@ -62,6 +62,25 @@ process.exit();
 /*app.get('/editable_table', (req, res) => {
     res.render('editable_table',{name:user:});
 });*/
+
+app.post('/editEventpage', (req, res) => {
+    request.get({ url: "http://localhost:3000/api/events/"+req.body.id},function(error, response,body) {
+        if (!error && response.statusCode == 200) { myData2 = JSON.parse(body);
+    request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('editevent',{data: myData,moment:moment,data2:myData2});
+           }
+        
+       })}})});
+
+
+      
+
+
+
+
+
 app.get('/events', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {

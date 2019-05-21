@@ -333,7 +333,7 @@
               
                 <ul class="event-list">
                     <%  for(let i=0; i < data2.length; i++) { %>
-                    <li><%=data2[i].title %> @ <%=data2[i].startDate%> <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
+                    <li><%=data2[i].title %> @ <%= moment(data2[i].startDate).format("HH:mm")%> <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
                    
                      <% } %>
                 </ul>

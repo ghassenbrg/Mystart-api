@@ -573,7 +573,7 @@ app.post('/', function(req, res) {
                         request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
                             if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
 
-                        res.render('index',{data:myData,data2:myData2});}});
+                        res.render('index',{data:myData,data2:myData2,moment:moment});}});
                        
                       
                    }});

@@ -43,7 +43,7 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all users from the database.
-exports.findAll = (req,res) => {
+exports.find = (req,res) => {
     Event.find()
     .then(events => {
         res.send(events);
@@ -53,6 +53,22 @@ exports.findAll = (req,res) => {
         });
     });
 };
+
+
+
+
+exports.findAll = (req,res) => {
+    Event.find().sort({startTime: 1})
+    .then(events => {
+        res.send(events);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
+
+
 
 // Find a single event by id
 exports.findOne = (req, res) => {
@@ -76,7 +92,13 @@ exports.findOne = (req, res) => {
     });
 };
 exports.findTodayEvents = (req,res) => {
-    Event.find({data:{ $exists: true}})
+
+    let date_max = new Date();
+    let date_min = new Date();
+    date_max.setDate(date_max.getDate() + 1);
+    
+       
+    Event.find({startDate:{ $gte:date_min}}&&{startDate:{  $lt: date_max}})
     .then(events => {
         res.send(events);
     }).catch(err => {

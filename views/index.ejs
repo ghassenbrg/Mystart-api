@@ -330,13 +330,12 @@
                     <span>Today</span>
                     Friday
                 </div>
+              
                 <ul class="event-list">
-                    <li>Lunch with hamdi @ 3:30 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
-                    <li>Coffee meeting with ahmed @ 4:30 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
-                    <li>Skypee conf with khalil @ 5:45 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
-                    <li>Gym @ 7:00 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
-                    <li>Dinner with mark zuckerberg @ 9:30 <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
-
+                    <%  for(let i=0; i < data2.length; i++) { %>
+                    <li><%=data2[i].title %> @ <%=data2[i].startDate%> <a href="#" class="event-close"><i class="ico-close2"></i></a></li>
+                   
+                     <% } %>
                 </ul>
                 <input type="text" class="form-control evnt-input" placeholder="NOTES">
             </div>

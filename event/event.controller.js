@@ -13,6 +13,8 @@ module.exports = (app) => {
     // Retrieve a project
     app.get('/api/events/:eventId', events.findOne);
 
+    app.get('/api/todayevents/',events.findTodayEvents);
+
 
 
 

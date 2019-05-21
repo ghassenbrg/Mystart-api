@@ -186,22 +186,7 @@ if (!error && response.statusCode == 200) {
         
 
 
-app.post('/', function(req, res) {
-    request.post({ url: "http://localhost:3000/api/admin/login", form: req.body },function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                global.myAdmin = JSON.parse(body);
-                request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
-                    if (!error && response.statusCode == 200) {
-                        myData2 = JSON.parse(body);
-                        res.render('index',{data:myData2});
-                       }
-                       else {
-                    res.render(myData2);}
-                   });
-               }
-        
-           });
-   });
+
 
 app.post('/addEvent',function(req, res) {
    
@@ -279,17 +264,13 @@ app.post('/configdata', function(req, res) {
 app.get('/index', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
-            //res.render('index',{data: body});
-            myData = JSON.parse(body);
-            res.render('index',{data: myData});
+            myData = JSON.parse(body); }});
+            request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
+                if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
+            res.render('index',{data: myData,data2:myData2});
            }
-       });
-       
-    
-    
-});
-
-
+       })});
+     
 
 
 
@@ -587,12 +568,15 @@ app.post('/', function(req, res) {
                 global.myAdmin = JSON.parse(body);
                 request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
                     if (!error && response.statusCode == 200) {
-                        myData2 = JSON.parse(body);
-                        res.render('index',{data:myData2});
-                       }
-                       else {
-                    res.render(myData2);}
-                   });
+                        myData = JSON.parse(body);
+
+                        request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
+                            if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
+
+                        res.render('index',{data:myData,data2:myData2});}});
+                       
+                      
+                   }});
                }
         
            });

@@ -71,7 +71,16 @@ else
 
     
     // Save User in the database
-    
+    exports.count = (req,res) => {
+        User.find().countDocuments()
+        .then(nbr => {
+            res.send({nbr: nbr});
+        }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Something wrong while retrieving users."
+            });
+        });
+    };
 
 
 

@@ -258,7 +258,16 @@ exports.verify = (req, res) => {
     });
 };
 
-
+exports.count = (req,res) => {
+    Expert.find().countDocuments()
+    .then(nbr => {
+        res.send({nbr: nbr});
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving users."
+        });
+    });
+};
 
 
 exports.ban = (req, res) => {

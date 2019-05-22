@@ -25,5 +25,5 @@ module.exports = (app) => {
     app.put('/api/unbanuser/:userId',users.unban);
     // Delete a user
     app.delete('/api/user/:userId',users.delete);
-
+    app.get('/api/nombreofuser',users.count);
 }

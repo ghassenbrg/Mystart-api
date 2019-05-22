@@ -250,6 +250,8 @@
                                     <th>Description</th>
                                     <th>Coverimg</th>
                                     <th>Cost</th>
+                                    <th>startDate</th>
+                                    <th>endDate</th>
                                     <th>Published</th>
                                     <th>view</th> 
                                     <th>Edit</th> 
@@ -271,6 +273,8 @@
                                    
                  
                                     <td><a class="sexe" ><%=data[i].cost %>$</a></td>
+                                    <td><a class="staeDate" ><%=moment(data[i].startDate).format("YYYY-MM-DD HH:mm") %></a></td>
+                                    <td><a class="endDate" ><%=moment(data[i].endDate).format("YYYY-MM-DD HH:mm") %></a></td>
                                     <% if (data[i].published==false) { %>  
                                         <td>     
                                                 <div class="form-group">

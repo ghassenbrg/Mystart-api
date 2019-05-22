@@ -1,6 +1,10 @@
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
-
+<style>
+.checked {
+  color: orange;
+}
+</style>
 <body>
     <section id="container">
     <!--header start-->
@@ -236,23 +240,44 @@
                                 <a class="fa fa-times" href="javascript:;"></a>
                              </span>
                         </header>
-                        <div class="panel-body">
-                            <form action="#" class="form-horizontal ">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3">Event title</label>
-                                    <div class="col-md-4 col-xs-11">
-                                        <input type="text" name="title" id="title" class="form-control" required>
-                                     
-                                        
-                                       
-                                    </div>
-                                </div>
-                            
-                              
-                              
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Rating system</h2>
                                 
-    
-                            </form>
+                                 </div>
+                        </div>
+
+                                    <div class="row">
+                                    <div class="col-md-3">
+                                  
+                                </div>
+                                <div class="col-md-6">
+                           
+                        
+                                    </div>
+                    
+                                    <div class="col-md-3">
+                                     
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                    <br>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                        </div>
+                                       
+                        
+                        </div>
+                            
+                        <div class="row">
+                                <div class="col-md-3">    
+                                    <h2>Reviews</h2>
+                                </div> 
                         </div>
                       
                     </section>

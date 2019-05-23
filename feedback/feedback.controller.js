@@ -5,7 +5,7 @@ module.exports = (app) => {
     app.post('/api/feedbacks', feedbacks.create);
 
     // Retrieve all projects
-    app.get('/api/feedbacks', feedbacks.findAll);
+    app.get('/api/getfeedbacks', feedbacks.findAll);
 
     // Retrieve a project
     app.get('/api/feedbacks/:feedbackId',  feedbacks.findOne);

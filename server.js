@@ -42,6 +42,7 @@ require('./expert/expert.controller.js')(app);
 require('./courses/course.controller.js')(app);
 require('./order/order.controller.js')(app);
 require('./configdata/config.controller.js')(app);
+require('./feedback/feedback.controller.js')(app);
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
@@ -247,10 +248,18 @@ app.post('/configdata', function(req, res) {
 
                app.get('/feedback', (req, res) => {
                 request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
-                    if (!error && response.statusCode == 200) {
-                       
-                        myData = JSON.parse(body);
-                        res.render('feedback',{data: myData});
+                    if (!error && response.statusCode == 200) { myData = JSON.parse(body);
+                        request.get({ url: "http://localhost:3000/api/feedbacks" },function(error, response, body) {
+                            if (!error && response.statusCode == 200) {
+                               myData2 = JSON.parse(body);
+                               } });
+                               
+                               request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+                                if (!error && response.statusCode == 200) {
+                                   myData3 = JSON.parse(body);
+                                   } });
+                        
+                        res.render('feedback',{data: myData,data2:myData2,data3:myData3});
                        }
                    });
                    

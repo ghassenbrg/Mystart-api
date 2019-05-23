@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const orders= require('./order.routes.js');
+    const feedbacks= require('./feedback.routes.js');
 
     // Create a new project
     app.post('/api/feedbacks', feedbacks.create);
@@ -8,11 +8,11 @@ module.exports = (app) => {
     app.get('/api/feedbacks', feedbacks.findAll);
 
     // Retrieve a project
-    app.get('/api/feedbacks/:feedbackId', orders.findOne);
+    app.get('/api/feedbacks/:feedbackId',  feedbacks.findOne);
 
     // Update project
-    app.put('/api/feedbacks/:feedbackId', orders.update);
+    app.put('/api/feedbacks/:feedbackId',  feedbacks.update);
 
     // Delete a user
-    app.delete('/api/orders/:feedbackId', orders.delete);
+    app.delete('/api/feedbacks/:feedbackId',  feedbacks.delete);
 }

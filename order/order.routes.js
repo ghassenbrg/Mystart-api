@@ -45,7 +45,26 @@ exports.findAll = (req,res) => {
         });
     });
 };
-
+exports.completedorders = (req,res) => {
+    Order.find({orderStatu:true})
+    .then(orders => {
+        res.send(orders);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving orders."
+        });
+    });
+};
+exports.incompletedorders = (req,res) => {
+    Order.find({orderStatu:false})
+    .then(orders => {
+        res.send(orders);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving orders."
+        });
+    });
+};
 // Find a single order by id
 exports.findOne = (req, res) => {
     Orders.findById(req.params.orderId)

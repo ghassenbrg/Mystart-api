@@ -94,12 +94,12 @@ app.post('/editEventpage', (req, res) => {
 
 
 
-app.get('/events', (req, res) => {
+app.get('/events_published', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
           
             myData2 = JSON.parse(body);
-            request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+            request.get({ url: "http://localhost:3000/api/publishedevents" },function(error, response, body) {
                 if (!error && response.statusCode == 200) {
                     myData = JSON.parse(body);
                     res.render('events',{data: myData,data2:myData2,moment:moment});
@@ -110,7 +110,37 @@ app.get('/events', (req, res) => {
         
        })
 
+       app.get('/events_unpublished', (req, res) => {
+        request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+              
+                myData2 = JSON.parse(body);
+                request.get({ url: "http://localhost:3000/api/unpublishedevents" },function(error, response, body) {
+                    if (!error && response.statusCode == 200) {
+                        myData = JSON.parse(body);
+                        res.render('events',{data: myData,data2:myData2,moment:moment});
+                       }
+                   });
+            }});
+               
+            
+           })
 
+           app.get('/events', (req, res) => {
+            request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                  
+                    myData2 = JSON.parse(body);
+                    request.get({ url: "http://localhost:3000/api/events" },function(error, response, body) {
+                        if (!error && response.statusCode == 200) {
+                            myData = JSON.parse(body);
+                            res.render('events',{data: myData,data2:myData2,moment:moment});
+                           }
+                       });
+                }});
+                   
+                
+               })
 app.get('/addEvent', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -350,6 +380,32 @@ app.get('/projects', urlencodedParser,(req,res)=>{
        });
 });
 
+app.get('/verifiedprojects', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/verifiedprojects" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('projects',{data: myData,data2:myData2});
+           }
+       });
+});
+
+app.get('/unverifiedprojects', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/unverifiedprojects" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('projects',{data: myData,data2:myData2});
+           }
+       });
+});
+
 
 app.post('/projects',urlencodedParser, function(req, res) { 
                                                     
@@ -406,6 +462,32 @@ app.get('/editable_table', urlencodedParser,(req,res)=>{
 });
 
 
+app.get('/editable_table_unbanned', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/bannedusers" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('editable_table',{data: myData,data2:myData2});
+           }
+       });
+});
+
+app.get('/editable_table_banned', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/unbannedusers" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('editable_table',{data: myData,data2:myData2});
+           }
+       });
+});
+
 
 
 //get experts
@@ -421,8 +503,55 @@ app.get('/experts-table', urlencodedParser,(req,res)=>{
            }
        });
 });
+app.get('/experts-table-verified', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/verifiedexperts" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
+app.get('/experts-table-unverified', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/unverifiedexperts" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
+app.get('/experts-table-banned', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/bannedexperts" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
 
-
+app.get('/experts-table-unbanned', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/unbannedexperts" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('experts-table',{data: myData,data2:myData2});
+           }
+       });
+});
 app.get('/courses', urlencodedParser,(req,res)=>{
     request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -435,6 +564,32 @@ app.get('/courses', urlencodedParser,(req,res)=>{
            }
        });
 });
+app.get('/verifiedcourses', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/verifiedcourses" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('courses',{data: myData,data2:myData2});
+           }
+       });
+});
+
+app.get('/unverifiedcourses', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/unverifiedcourses" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('courses',{data: myData,data2:myData2});
+           }
+       });
+});
+
 
 app.get('/articles', urlencodedParser,(req,res)=>{
     request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
@@ -442,6 +597,30 @@ app.get('/articles', urlencodedParser,(req,res)=>{
             myData2 = JSON.parse(body);
            }});
     request.get({ url: "http://localhost:3000/api/articles" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('articles',{data: myData,data2:myData2});
+           }
+       });
+});
+app.get('/articles_verified', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/articles_verified" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body);
+            res.render('articles',{data: myData,data2:myData2});
+           }
+       });
+});
+app.get('/articles_unverified', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/articles_unverified" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body);
             res.render('articles',{data: myData,data2:myData2});
@@ -474,7 +653,54 @@ app.get('/orders', urlencodedParser,(req,res)=>{
            }
        });
 });
+app.get('/uncompletedorders', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/incompletedorders" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+           myData = JSON.parse(body);
+           } });
+           
+           request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+               myData4 = JSON.parse(body);
+               } });
 
+
+            request.get({url:"http://localhost:3000/api/experts"},function(error,response,body){
+            if (!error && response.statusCode == 200) {
+          myData3=JSON.parse(body);
+          
+            res.render('orders',{data: myData,data2:myData2,data3:myData3,userData:myData4});
+           }
+       });
+});
+app.get('/completedorders', urlencodedParser,(req,res)=>{
+    request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData2 = JSON.parse(body);
+           }});
+    request.get({ url: "http://localhost:3000/api/completedorders" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+           myData = JSON.parse(body);
+           } });
+           
+           request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+               myData4 = JSON.parse(body);
+               } });
+
+
+            request.get({url:"http://localhost:3000/api/experts"},function(error,response,body){
+            if (!error && response.statusCode == 200) {
+          myData3=JSON.parse(body);
+          
+            res.render('orders',{data: myData,data2:myData2,data3:myData3,userData:myData4});
+           }
+       });
+});
 app.post('/orders', urlencodedParser,(req,res)=>{
  
                                                     

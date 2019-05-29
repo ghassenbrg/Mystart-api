@@ -42,6 +42,27 @@ exports.findAll = (req,res) => {
     });
 };
 
+
+exports.verifiedprojects = (req,res) => {
+    Project.find({verified: true})
+    .then(projects => {
+        res.send(projects);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving projects."
+        });
+    });
+};
+exports.unverifiedprojects = (req,res) => {
+    Project.find({verified: false})
+    .then(projects => {
+        res.send(projects);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving projects."
+        });
+    });
+};
 // Find a single project by id
 exports.findOne = (req, res) => {
     Project.findById(req.params.projectId)

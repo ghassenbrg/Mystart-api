@@ -6,7 +6,8 @@ module.exports = (app) => {
 
     // Retrieve all projects
     app.get('/api/articles', articles.findAll);
-
+    app.get('/api/articles_verified', articles.findverified);
+    app.get('/api/articles_unverified', articles.findunverified);
     // Retrieve a project
     app.get('/api/articles/:articleId', articles.findOne);
 

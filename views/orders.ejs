@@ -235,7 +235,14 @@
                     </header>
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
-                           
+                                <div class="btn-group">
+                                        <select class="form-control m-bot15" onchange="location = this.value;">
+                                            <option > Filter</option>
+                                            <option value="orders" >ALL</option>
+                                            <option value="completedorders">Completed</option>
+                                            <option value="uncompletedorders" >Uncompleted</option>
+                                        </select>
+                                     </div>
                             <div class="space15"></div>
                             <table class="table table-hover p-table" >
                                 <thead>
@@ -263,7 +270,15 @@
                                     
                                    
                                     
-                                    <td><a class="sexe" ><%=data[i].orderStatu %></a></td>
+                                   
+                                    <td>
+                                            <%if (data[i].orderStatu==true) { %>
+                                                
+                                               completed <%  }%> 
+                                             
+                                                <%if (data[i].orderStatu==false) { %> uncompleted <%  }%> 
+                                             
+                                            </td>
                                     <% let j=0; while((j < data3.length)&&(data[i].expert!=data3[j]._id)){j++;} %>
                                     <% let c=0; while((c < userData.length)&&(data[i].user!=userData[c]._id)){c++;} %>
 

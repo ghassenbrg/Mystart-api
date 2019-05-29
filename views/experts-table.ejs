@@ -244,7 +244,17 @@
                     </header>
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
-                           
+                                <div class="btn-group">
+                                        <select class="form-control m-bot15" onchange="location = this.value;">
+                                            <option > Filter</option>
+                                            <option value="experts-table" >ALL</option>
+                                            <option value="experts-table-unbanned">Unbanned</option>
+                                            <option value="experts-table-banned" >Banned</option>
+                                            <option value="experts-table-unverified">Unverified</option>
+                                            <option value="experts-table-verified">Verified</option>
+                                   
+                                        </select>
+                                     </div>
                             <div class="space15"></div>
                             <table class="table table-hover p-table" >
                                 <thead>

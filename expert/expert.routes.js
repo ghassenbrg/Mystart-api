@@ -148,7 +148,47 @@ exports.findAllexpert = (req,res) => {
     });
 };
 
+exports.findVerifiedexpert = (req,res) => {
+    Expert.find({verified: true})
+    .then(experts => {
+        res.send(experts);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving experts."
+        });
+    });
+};
+exports.findUnverifiedexpert = (req,res) => {
+    Expert.find({verified: false})
+    .then(experts => {
+        res.send(experts);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving experts."
+        });
+    });
+};
+exports.findBannedexpert = (req,res) => {
+    Expert.find({banned: true})
+    .then(experts => {
+        res.send(experts);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving experts."
+        });
+    });
+};
 
+exports.findUnbannedexpert = (req,res) => {
+    Expert.find({banned: false})
+    .then(experts => {
+        res.send(experts);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving experts."
+        });
+    });
+};
 
 
 

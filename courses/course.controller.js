@@ -6,6 +6,8 @@ module.exports = (app) => {
 
     // Retrieve all projects
     app.get('/api/courses', courses.findAll);
+    app.get('/api/verifiedcourses', courses.verifiedcourses);
+    app.get('/api/unverifiedcourses', courses.unverifiedcourses);
 
     // Retrieve a project
     app.get('/api/courses/:courseId', courses.findOne);

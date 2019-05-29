@@ -69,6 +69,29 @@ exports.findAll = (req,res) => {
 };
 
 
+exports.findpublishedevent = (req,res) => {
+    Event.find({published:true}).sort({startTime: 1})
+    .then(events => {
+        res.send(events);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
+
+exports.findunpublishedevent = (req,res) => {
+    Event.find({published:false}).sort({startTime: 1})
+    .then(events => {
+        res.send(events);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
+
+
 
 // Find a single event by id
 exports.findOne = (req, res) => {

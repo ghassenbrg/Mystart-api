@@ -9,7 +9,8 @@ module.exports = (app) => {
 
     // Retrieve a project
     app.get('/api/project/:projectId', projects.findOne);
-
+    app.get('/api/verifiedprojects', projects.verifiedprojects);
+    app.get('/api/unverifiedprojects', projects.unverifiedprojects);
     // Update project
     app.put('/api/project/:projectId', projects.update);
 

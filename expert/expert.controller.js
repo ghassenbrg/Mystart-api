@@ -8,7 +8,10 @@ module.exports = (app) => {
   
   
   app.post('/api/expert/login',experts.login);
-
+  app.get('/api/verifiedexperts',experts.findVerifiedexpert);
+  app.get('/api/unverifiedexperts',experts.findUnverifiedexpert);
+  app.get('/api/bannedexperts',experts.findBannedexpert);
+  app.get('/api/unbannedexperts',experts.findUnbannedexpert);
     // Retrieve all Users
     app.get('/api/experts',experts.findAllexpert);
    

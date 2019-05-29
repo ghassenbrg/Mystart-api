@@ -17,6 +17,8 @@ module.exports = (app) => {
       // Retrieve a single Product with userId
     app.get('/api/users',users.findAll);
     //find admin
+    app.get('/api/bannedusers',users.findAllbanned);
+    app.get('/api/unbannedusers',users.findAllunbanned);
     app.get('/api/user/:userId',users.finduser);
     // Update user
     app.put('/api/user/:userId',users.update);

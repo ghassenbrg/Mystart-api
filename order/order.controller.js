@@ -6,6 +6,8 @@ module.exports = (app) => {
 
     // Retrieve all projects
     app.get('/api/orders', orders.findAll);
+    app.get('/api/completedorders', orders.completedorders);
+    app.get('/api/incompletedorders', orders.incompletedorders);
 
     // Retrieve a project
     app.get('/api/orders/:orderId', orders.findOne);

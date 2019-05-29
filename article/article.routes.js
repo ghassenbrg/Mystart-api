@@ -46,6 +46,26 @@ exports.findAll = (req,res) => {
     });
 };
 
+exports.findunverified = (req,res) => {
+    Article.find({verified:false})
+    .then(articles => {
+        res.send(articles);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving articles."
+        });
+    });
+};
+exports.findverified = (req,res) => {
+    Article.find({verified:true})
+    .then(articles => {
+        res.send(articles);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving articles."
+        });
+    });
+};
 // Find a single article by id
 exports.findOne = (req, res) => {
     Article.findById(req.params.articleId)

@@ -47,7 +47,26 @@ exports.findAll = (req,res) => {
         });
     });
 };
-
+exports.verifiedcourses = (req,res) => {
+    Course.find({verified:true})
+    .then(courses => {
+        res.send(courses);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
+exports.unverifiedcourses = (req,res) => {
+    Course.find({verified:false})
+    .then(courses => {
+        res.send(courses);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving events."
+        });
+    });
+};
 // Find a single event by id
 exports.findOne = (req, res) => {
     Courses.findById(req.params.courseId)

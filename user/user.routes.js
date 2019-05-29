@@ -143,20 +143,29 @@ exports.login=(req,res) => {
 
 //login admin 
 
-// Retrieve all experts from the database.!
-exports.findAllexpert = (req,res) => {
-    User.find({expert:{ $exists: true}})
+// Retrieve all experts banned user from database.!
+exports.findAllbanned = (req,res) => {
+    User.find({banned: true})
     .then(users => {
         res.send(users);
     }).catch(err => {
         res.status(500).send({
-            message: err.message || "Something wrong while retrieving experts."
+            message: err.message || "Something wrong while retrieving banned users."
         });
     });
 };
-//return admin 
+//return all unbanned users
 
-
+exports.findAllunbanned = (req,res) => {
+    User.find({banned: false})
+    .then(users => {
+        res.send(users);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Something wrong while retrieving unbanned users."
+        });
+    });
+};
 
 /*exports.login = (req, res) => {
     User.find( { $and: [ { username:req.params.username }, { password: req.params.username } ] } )

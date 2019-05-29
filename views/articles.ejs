@@ -236,7 +236,14 @@
                     </header>
                     <div class="panel-body">
                         <div class="adv-table editable-table ">
-                           
+                                <div class="btn-group">
+                                        <select class="form-control m-bot15" onchange="location = this.value;">
+                                            <option > Filter</option>
+                                            <option value="articles" >ALL</option>
+                                            <option value="articles_verified">Verifed</option>
+                                            <option value="articles_unverified" >Unverified</option>
+                                        </select>
+                                     </div>
                             <div class="space15"></div>
                             <table class="table table-hover p-table" >
                                 <thead>

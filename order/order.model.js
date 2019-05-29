@@ -5,7 +5,7 @@ const OrderSchema = mongoose.Schema({
     offferid:String,
     productType: String, 
     cost: Number, 
-    orderStatu:String,
+    orderStatu:Boolean,
     
 
 }, {

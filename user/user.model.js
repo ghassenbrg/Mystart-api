@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
-const ExpertSchema=mongoose.Schema({
-    netincome:Number,
-    withdrawn:Number,
-    availableforwithdrawal:Number,
-});
+
 const UserSchema = mongoose.Schema({
     username: String ,
     mdp: String ,

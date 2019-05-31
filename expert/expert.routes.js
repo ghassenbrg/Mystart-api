@@ -192,7 +192,7 @@ exports.findUnbannedexpert = (req,res) => {
 
 
 
-exports.findexpert= (req, res) => {
+exports.findexpert = (req, res) => {
     Expert.findById(req.params.expertId)
     .then(expert => {
         if(!expert) {

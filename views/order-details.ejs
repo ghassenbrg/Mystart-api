@@ -1,19 +1,10 @@
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
-<style>
-.fa{
-    padding-top:6px;
-}
-
-.checked {
-  color: orange;
-}
-h2,.h2{text-align: center}
-</style>
 <body>
-    <section id="container">
-    <!--header start-->
-    <header class="header fixed-top clearfix">
+
+<section id="container" >
+<!--header start-->
+<header class="header fixed-top clearfix">
     <!--logo start-->
     <div class="brand">
     
@@ -131,7 +122,7 @@ h2,.h2{text-align: center}
                 <ul class="dropdown-menu extended logout">
                     <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                     <li><a href="account-setting"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="logout"><i class="fa fa-key"></i> Log Out</a></li>
+                    <li><a href="/logout"><i class="fa fa-key"></i> Log Out</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->
@@ -143,187 +134,195 @@ h2,.h2{text-align: center}
 <!--header end-->
 <aside>
     <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->            <div class="leftside-navigation">
-                <ul class="sidebar-menu" id="nav-accordion">
-                        <li>
-                            <a href="/index">
-                                <i class="fa fa-dashboard"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a   href="/editable_table">
-                                <i class="fa fa-users"></i>
-                                <span>Manage users</span>
-                            </a>
-                        </li>
-                    
-                        <li>
-                                <a   href="/experts-table">
-                                    <i class="fa fa-star"></i>
-                                    <span>Manage experts</span>
-                                </a>
-                            </li>
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" href="/index">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+               
+                <li class="sub-menu" >
+                    <a  href="/editable_table">
+                        <i class="fa fa-users"></i>
+                        <span>Manage users</span>
+                    </a>
+                </li>
+                <li class="sub-menu">          
+            <a   href="/experts-table">
+                <i class="fa fa-star"></i>
+                <span>Manage experts</span>
+            </a>
+        </li>
+           
             
-                        <li>
-                            <a   href="/projects">
-                                <i class="fa fa-file-text"></i>
-            
-                                
-                                <span>Manage projects</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a   href="/courses">
-                                <i class="fa fa-book"></i> 
-                                <span>Manage courses</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  href="/articles">
-                                <i class="fa fa-folder"></i>
-                                <span>Manage articles</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  href="/orders">
-                                <i class="fa fa-shopping-cart"></i>
-                               
-                                <span>Manage orders</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a   href="/events" >
-                                <i class="fa fa-calendar"></i>
-                                <span>Manage Events</span>
-                            </a>
-                        </li>
-                        <li>
-                                <a  href="/configdata">
-                                    <i class="fa fa-wrench"></i>
-                                   
-                                    <span>Manage data</span>
-                                </a>
-                            </li>
 
+                <li class="sub-menu">
+                    <a  href="/projects">
+                        <i class="fa fa-file-text"></i>
 
-
-                            <li>
-                                <a   href="/feedback" class="active">
-                                    <i class="fa fa-thumbs-up"></i>
-                                    <span>Manage Feedback</span>
-                                </a>
-                            </li>
-                       
-                        <li class="sub-menu">
-                                <a href="/mail_compose" >
-                                    <i class="fa fa-envelope"></i>
-                                    <span>Mail </span>
-                                </a>
-                        </li>
-                       
-                       
                         
+                        <span>Manage projects</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a  href="/courses">
+                        <i class="fa fa-book"></i> 
+                        <span>Manage courses</span>
+                    </a>
+                </li>
+                <li class="sub-menu" >
+                    <a  href="/articles">
+                        <i class="fa fa-folder"></i>
+                        <span>Manage articles</span>
+                    </a>
+                </li>
+    <li>
+                    <a  href="/orders">
+                        <i class="fa fa-shopping-cart"></i>
                        
-                    
-                    </ul></div>       
-<!-- sidebar menu end-->
+                        <span>Manage orders</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a   href="/events" >
+                        <i class="fa fa-calendar"></i>
+                        <span>Manage Events</span>
+                    </a>
+                </li>
+                <li>
+                        <a  href="/configdata">
+                            <i class="fa fa-wrench"></i>
+                           
+                            <span>Manage data</span>
+                        </a>
+                    </li>
+         
+                    <li>
+                        <a   href="/feedback" >
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>Manage Feedback</span>
+                        </a>
+                    </li>
+                <li class="sub-menu">
+                    <a href="/mail_compose">
+                        <i class="fa fa-envelope"></i>
+                        <span>Mail </span>
+                    </a>
+                       </div>
+        <!-- sidebar menu end-->
     </div>
 </aside>
 <!--sidebar end-->
     <!--main content start-->
     <section id="main-content">
-        <section class="wrapper">
-            <div class="row">
-                <div class="col-md-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Date Pickers
-                              <span class="tools pull-right">
-                                <a class="fa fa-chevron-down" href="javascript:;"></a>
-                                <a class="fa fa-cog" href="javascript:;"></a>
-                                <a class="fa fa-times" href="javascript:;"></a>
-                             </span>
-                        </header>
-                   
+    <section class="wrapper">
+        <!-- page start-->
 
-                       
-                        <h2>Reviews</h2>
-                        <div class="row">
-                                <div class="col-md-3">    
-                                   
-                                    <div class="prf-box">
-                                        <h2 class="prf-border-head" >Experts</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel">
+                    <div class="panel-body invoice">
+                        <div class="invoice-header">
+                            <div class="invoice-title col-md-3 col-xs-2">
+                                <h1>invoice</h1>
+                                <img class="logo-print" src="images/bucket-logo.png" alt="">
+                            </div>
+                            <div class="invoice-info col-md-9 col-xs-10">
 
-                                        <%  for(let i=0; i < userdata.length; i++) { %>
-                                        <div class=" wk-progress tm-membr">
-                                            <% let j=0; while((j < userdata.length)&&(feedbackdata[i].userid!=userdata[j]._id)){j++;} %>
-                                            <div class="col-md-3 col-xs-3">
-                                                <div class="tm-avatar">
-                                                    <img src="<%=userdata[j].profilepic%>" alt=""/>
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-md-9 col-xs-9">
-                                                <span class="tm"><%=userdata[j].username%> <br><%=moment(feedbackdata[i].createdAt).format("YYYY-MM-DD HH:mm") %></span>
-                                           
-                                            </div>
-                                          
-                                        </div>
-                                       
-                                       <%}%>
-                                       
-                                        
+                                <div class="pull-right">
+                                    <div class="col-md-6 col-sm-6 pull-left">
+                                        <p>country:<%=user.country%>
+                                        </p>
                                     </div>
-                                </div> 
-                                 <div class="col-md-9">    
-                                  
-                                    <div class="prf-box">
-                                        <h3 class="prf-border-head" >Rating AND Comment</h3>
-                                        <%  for(let i=0; i < userdata.length; i++) { %>
-                                        <div class=" wk-progress tm-membr">
-                                            <div class="col-md-12 col-xs-12">
-                                                <div class="tm-avatar">
-                                                        
-                                                        <%  for(let c=0; c < feedbackdata[i].rate; c++) { %>
-                                                          
-                                                        <span class="fa fa-star checked"></span>
-                                                       
-                                                      
-                                                        <% } %>
-                                                         <%  for(let c=0; c < (5-feedbackdata[i].rate); c++) { %>
-                                                            <span class="fa fa-star"></span>
-                                                           
-                                                          
-                                                            <% } %>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-xs-12">
-                                                <span > <p><%=feedbackdata[i].description%></p></span>
-                                            </div>
-                                            
-                                        </div>
-                                        <%}%>
-                                     
-                                        
-                                                
-                                       
+                                    <div class="col-md-6 col-sm-6 pull-right">
+                                        <p>phone:<%=user.phone%> <br>
+                                            Email : <%=user.email%></p>
                                     </div>
-                                </div> 
-                              
-                              
+                                </div>
+
+                            </div>
                         </div>
-                      
-                    </section>
- 
-                </div>
-                
-                
-                </div>
+                        <div class="row invoice-to">
+                            <div class="col-md-4 col-sm-4 pull-left">
+                                <h4>Invoice To:</h4>
+                                <h2><%=expert.username%></h2>
+                                <p>
+                                    
+                                    Phone: <%=expert.phone%><br>
+                                    Email :  <%=expert.email%>
+                                </p>
+                            </div>
+                            <div class="col-md-4 col-sm-5 pull-right">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-5 inv-label">Invoice #</div>
+                                    <div class="col-md-8 col-sm-7">233426</div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-5 inv-label">Date #</div>
+                                    <div class="col-md-8 col-sm-7"><%=moment(data2.createdAt).format("MMMM Do YYYY,HH:mm")%></div>
+                                </div>
+                                <br>
+                           
 
+
+                            </div>
+                        </div>
+                        <table class="table table-invoice" >
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Item Description</th>
+                                <th>    Cost</th>
+                          
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <h4><%=data2.productType %></h4>
+                                 
+                                </td>
+                               
+                                <td class="text-center"><%=data2.cost %>$</td>
+                            </tr>
+                           
+                           
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-md-8 col-xs-7 payment-method">
+                                <h4>Payment Method</h4>
+                              
+                                <br>
+                                <h3 class="inv-label itatic">Thank you for your business</h3>
+                            </div>
+                            <div class="col-md-4 col-xs-5 invoice-block pull-right">
+                                <ul class="unstyled amounts">
+                                   
+                                    <li>TAX (10%) ----- </li>
+                                    <li class="grand-total">total cost After tax <%=data2.cost*1.1%>$</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-center invoice-btn">
+                            <a class="btn btn-success btn-lg"><i class="fa fa-check"></i> Submit Order</a>
+                            <a href="invoice_print.html" target="_blank" class="btn btn-primary btn-lg"><i class="fa fa-print"></i> Print </a>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
         <!-- page end-->
-        </section>
     </section>
+</section>
     <!--main content end-->
 <!--right sidebar start-->
 <div class="right-sidebar">
@@ -579,7 +578,6 @@ h2,.h2{text-align: center}
 
 </section>
 
-<!-- Placed js at the end of the document so the pages load faster -->
 
 </body>
-</html>
+

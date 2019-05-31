@@ -67,7 +67,7 @@ exports.incompletedorders = (req,res) => {
 };
 // Find a single order by id
 exports.findOne = (req, res) => {
-    Orders.findById(req.params.orderId)
+    Order.findById(req.params.orderId)
     .then(order => {
         if(!order) {
             return res.status(404).send({

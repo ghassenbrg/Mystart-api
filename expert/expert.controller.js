@@ -15,7 +15,7 @@ module.exports = (app) => {
     // Retrieve all Users
     app.get('/api/experts',experts.findAllexpert);
    
-    app.get('/api/expert/:Id', experts.findexpert);
+    app.get('/api/expert/:expertId', experts.findexpert);
     // Retrieve a single Product with userId
       // Retrieve a single Product with userId
       app.get('/api/countexperts',experts.count);

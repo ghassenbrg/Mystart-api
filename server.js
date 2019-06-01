@@ -64,11 +64,11 @@ process.exit();
     res.render('editable_table',{name:user:});
 });*/
 
-app.get('/orderdetails', (req, res) => {
+app.post('/order-details', (req, res) => {
     request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body); 
-            request.get({ url: "http://localhost:3000/api/orders/5cd6620f20a2c501509f8472" },function(error, response, body) { 
+            request.get({ url: "http://localhost:3000/api/orders/"+req.body.orderid },function(error, response, body) { 
                 if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
                     request.get({ url: "http://localhost:3000/api/user/"+myData2.user },function(error, response, body) {
                         if (!error && response.statusCode == 200){  userData = JSON.parse(body);
@@ -84,6 +84,32 @@ app.get('/orderdetails', (req, res) => {
 
 
 });
+
+
+app.post('/submitorder', (req, res) => {
+    request.put({ url: "http://localhost:3000/api/completeorders/"+req.body.id },function(error, response,body) {
+        if (!error && response.statusCode == 200) { 
+            myData2 = JSON.parse(body);
+    request.get({ url: "http://localhost:3000/api/admin/5ccc2c59ea929d23bc7ff1a9" },function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            myData = JSON.parse(body); 
+           
+                    request.get({ url: "http://localhost:3000/api/user/"+myData2.user },function(error, response, body) {
+                        if (!error && response.statusCode == 200){  userData = JSON.parse(body);
+                            request.get({ url: "http://localhost:3000/api/expert/"+myData2.expert },function(error, response, body) {
+                                if (!error && response.statusCode == 200){  expertData = JSON.parse(body);
+            res.render('order-details',{data: myData,data2:myData2,moment:moment,user:userData,expert:expertData});
+      
+    } });
+
+}
+});}})
+
+
+}})
+});
+
+
 
 app.post('/editEventpage', (req, res) => {
     request.get({ url: "http://localhost:3000/api/events/"+req.body.id},function(error, response,body) {
@@ -663,7 +689,7 @@ app.get('/orders', urlencodedParser,(req,res)=>{
            request.get({ url: "http://localhost:3000/api/users" },function(error, response, body) {
             if (!error && response.statusCode == 200) {
                myData4 = JSON.parse(body);
-               } });
+             
 
 
             request.get({url:"http://localhost:3000/api/experts"},function(error,response,body){
@@ -672,7 +698,7 @@ app.get('/orders', urlencodedParser,(req,res)=>{
           
             res.render('orders',{data: myData,data2:myData2,data3:myData3,userData:myData4});
            }
-       });
+       });  } });
 });
 app.get('/uncompletedorders', urlencodedParser,(req,res)=>{
     request.get({ url: "http://localhost:3000/api/admin/"+myAdmin.id},function(error, response, body) {

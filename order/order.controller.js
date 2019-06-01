@@ -14,6 +14,7 @@ module.exports = (app) => {
 
     // Update project
     app.put('/api/orders/:orderId', orders.update);
+    app.put('/api/completeorders/:orderId', orders.complete);
 
     // Delete a user
     app.delete('/api/orders/:orderId', orders.delete);

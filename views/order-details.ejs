@@ -1,5 +1,20 @@
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/script.ejs %>  
+<script type="text/javascript">
+    function imprimer_page(){
+      window.print();
+    }
+    </script>
+    <style media="print">
+            
+            #impression {
+  display : none;
+
+}
+.header {
+    display:none;
+}
+            </style>
 <body>
 
 <section id="container" >
@@ -8,9 +23,9 @@
     <!--logo start-->
     <div class="brand">
     
-        <a href="index.html" class="logo">
+      
             <img src="assets/img/logo.png" alt="">
-        </a>
+       
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars"></div>
         </div>
@@ -138,7 +153,7 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="/index">
+                    <a  href="/index">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -188,7 +203,7 @@
                 </li>
 
                 <li>
-                    <a   href="/events" >
+                    <a   href="/events" class="active" >
                         <i class="fa fa-calendar"></i>
                         <span>Manage Events</span>
                     </a>
@@ -276,7 +291,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Item Description</th>
+                                <th>Product type</th>
                                 <th>    Cost</th>
                           
                             </tr>
@@ -312,8 +327,25 @@
                         </div>
 
                         <div class="text-center invoice-btn">
-                            <a class="btn btn-success btn-lg"><i class="fa fa-check"></i> Submit Order</a>
-                            <a href="invoice_print.html" target="_blank" class="btn btn-primary btn-lg"><i class="fa fa-print"></i> Print </a>
+                                <% if (data2.orderStatu==false) { %>  
+                                   
+                                            <div class="form-group">
+                                       
+                                                    <form class="form-horizontal" method="post" action="/submitorder">
+                                                     <div class="form-group" hidden="true">
+                                                           
+                                                      <input type="text" id="id" class="form-control" name="id" value="<%=data2._id %>">
+                                                     </div>   <input class="btn btn-success btn-lg" type="submit" value=" Confirm Order"/>   </form></div>
+                                     
+                                    <%}%>
+                                    <% if (data2.orderStatu==true) { %>  
+                                
+                                    
+<form>
+         <input class="btn btn-primary btn-lg" id="impression" name="impression" type="button" onclick="imprimer_page()" value="Print"  />
+      </form>
+                                    <%}%>
+                           
                         </div>
 
                     </div>

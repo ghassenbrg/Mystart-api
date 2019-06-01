@@ -124,6 +124,41 @@ exports.update = (req, res) => {
     });
 };
 
+
+exports.complete = (req, res) => {
+    // Validate Request
+    if(!req.body) {
+        return res.status(400).send({
+            message: "order content can not be empty"
+        });
+    }
+
+    // Find and update user with the request body
+    Order.findByIdAndUpdate(req.params.orderId, {
+     
+        orderStatu:true,
+        
+    }, {new: true})
+    .then(order => {
+        if(!order) {
+            return res.status(404).send({
+                message: "order not found with id " + req.params.orderId
+            });
+        }
+        res.send(order);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "order not found with id " + req.params.orderId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong updating  " + req.params.orderId
+        });
+    });
+};
+
+
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
     Order.findByIdAndRemove(req.params.orderId)

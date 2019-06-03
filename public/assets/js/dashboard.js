@@ -108,13 +108,7 @@
 
 
             // DONUT
-            var dataPie = [{
-                label: "Users",
-                data: 150
-            },  {
-                label: "Experts",
-                data: 50
-            }];
+           
 
             $.plot($(".sm-pie"), dataPie, {
                 series: {

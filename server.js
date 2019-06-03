@@ -354,8 +354,15 @@ app.get('/index', (req, res) => {
         if (!error && response.statusCode == 200) {
             myData = JSON.parse(body); }});
             request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
-                if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
-            res.render('index',{data: myData,data2:myData2,moment:moment});
+                if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);}});
+                    request.get({ url: "http://localhost:3000/api/countexperts" },function(error, response, body) { 
+                        if (!error && response.statusCode == 200) {  myData3 = JSON.parse(body);  
+                            request.get({ url: "http://localhost:3000/api/nombreofuser" },function(error, response, body) { 
+                                if (!error && response.statusCode == 200) {  myData4 = JSON.parse(body);  
+            res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4}); 
+        }}); 
+          
+      
            }
        })});
      
@@ -856,9 +863,14 @@ app.post('/', function(req, res) {
 
                         request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
                             if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
+                                request.get({ url: "http://localhost:3000/api/countexperts" },function(error, response, body) { 
+                                    if (!error && response.statusCode == 200) {  myData3 = JSON.parse(body);  
+                                        request.get({ url: "http://localhost:3000/api/nombreofuser" },function(error, response, body) { 
+                                            if (!error && response.statusCode == 200) {  myData4 = JSON.parse(body);  
+                        res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4}); 
+                    }}); 
 
-                        res.render('index',{data:myData,data2:myData2,moment:moment});}});
-                       
+                                    }})}})
                       
                    }});
                }

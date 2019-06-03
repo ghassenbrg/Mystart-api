@@ -1,6 +1,25 @@
 <%- include ./elements/header.ejs %>       
 <%- include ./elements/scriptindex.ejs %>  
+
+
+
+
+
+
 <body>
+
+
+        <script>
+               
+               
+             var dataPie = [{
+                            label: "Users",
+                            data: parseInt( "<%=data4.nbr%>")
+                        },  {
+                            label: "Experts",
+                            data: parseInt( "<%=data3.nbr%>")
+                        }];
+            </script>
 <section id="container">
 <!--header start-->
 <header class="header fixed-top clearfix">

@@ -138,7 +138,7 @@ exports.login=(req,res) => {
 
 // Retrieve all experts from the database.!
 exports.findAllexpert = (req,res) => {
-    Expert.find()
+    Expert.find().sort({startTime: 1})
     .then(experts => {
         res.send(experts);
     }).catch(err => {
@@ -149,7 +149,7 @@ exports.findAllexpert = (req,res) => {
 };
 
 exports.findVerifiedexpert = (req,res) => {
-    Expert.find({verified: true})
+    Expert.find({verified: true}).sort({startTime: 1})
     .then(experts => {
         res.send(experts);
     }).catch(err => {
@@ -159,7 +159,7 @@ exports.findVerifiedexpert = (req,res) => {
     });
 };
 exports.findUnverifiedexpert = (req,res) => {
-    Expert.find({verified: false})
+    Expert.find({verified: false}).sort({startTime: 1})
     .then(experts => {
         res.send(experts);
     }).catch(err => {
@@ -169,7 +169,7 @@ exports.findUnverifiedexpert = (req,res) => {
     });
 };
 exports.findBannedexpert = (req,res) => {
-    Expert.find({banned: true})
+    Expert.find({banned: true}).sort({startTime: 1})
     .then(experts => {
         res.send(experts);
     }).catch(err => {
@@ -180,7 +180,7 @@ exports.findBannedexpert = (req,res) => {
 };
 
 exports.findUnbannedexpert = (req,res) => {
-    Expert.find({banned: false})
+    Expert.find({banned: false}).sort({startTime: 1})
     .then(experts => {
         res.send(experts);
     }).catch(err => {
@@ -301,7 +301,7 @@ exports.verify = (req, res) => {
 exports.count = (req,res) => {
     Expert.find().countDocuments()
     .then(nbr => {
-        res.send({nbr: nbr});
+        res.send({nbr});
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Something wrong while retrieving users."

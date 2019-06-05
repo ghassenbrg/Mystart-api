@@ -359,10 +359,12 @@ app.get('/index', (req, res) => {
                         if (!error && response.statusCode == 200) {  myData3 = JSON.parse(body);  
                             request.get({ url: "http://localhost:3000/api/nombreofuser" },function(error, response, body) { 
                                 if (!error && response.statusCode == 200) {  myData4 = JSON.parse(body);  
-            res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4}); 
+                                    request.get({ url: "http://localhost:3000/api/orders-somme" },function(error, response, body) { 
+                                        if (!error && response.statusCode == 200) {myData5=JSON.parse(body);
+            res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5}); 
         }}); 
           
-      
+    }})
            }
        })});
      
@@ -867,10 +869,12 @@ app.post('/', function(req, res) {
                                     if (!error && response.statusCode == 200) {  myData3 = JSON.parse(body);  
                                         request.get({ url: "http://localhost:3000/api/nombreofuser" },function(error, response, body) { 
                                             if (!error && response.statusCode == 200) {  myData4 = JSON.parse(body);  
-                        res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4}); 
+                                                request.get({ url: "http://localhost:3000/api/orders-somme" },function(error, response, body) { 
+                                                    if (!error && response.statusCode == 200) {myData5=JSON.parse(body);
+                        res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5}); 
                     }}); 
 
-                                    }})}})
+                                    }})}})}})
                       
                    }});
                }

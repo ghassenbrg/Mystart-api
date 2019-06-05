@@ -124,6 +124,39 @@ exports.update = (req, res) => {
     });
 };
 
+exports.somme = (req,res) => {
+    Order.aggregate([ { $match: {orderStatu:true} },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.todayprofit = (req,res) => {
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{updatedAt: { 
+        $lt: new Date(), 
+        $gte: new Date(new Date().setDate(new Date().getDate()-1))
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
 
 exports.complete = (req, res) => {
     // Validate Request

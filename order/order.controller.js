@@ -11,7 +11,10 @@ module.exports = (app) => {
 
     // Retrieve a project
     app.get('/api/orders/:orderId', orders.findOne);
-
+    app.get('/api/orders-somme',orders.somme);
+    app.get('/api/orders-profits-today',orders.todayprofit);
+  
+    
     // Update project
     app.put('/api/orders/:orderId', orders.update);
     app.put('/api/completeorders/:orderId', orders.complete);

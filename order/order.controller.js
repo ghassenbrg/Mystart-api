@@ -13,6 +13,7 @@ module.exports = (app) => {
     app.get('/api/orders/:orderId', orders.findOne);
     app.get('/api/orders-somme',orders.somme);
     app.get('/api/orders-profits-today',orders.todayprofit);
+    app.get('/api/order-thismonth',orders.thismonth);
   
     
     // Update project

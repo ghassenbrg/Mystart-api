@@ -189,23 +189,23 @@
                 fillOpacity: .7,
                 data: [{
                     period: '2019 Q1',
-                    courses: 10,
-                    services: 10
+                    courses: course1,
+                    services: service1
                   
                 }, {
                     period: '2019 Q2',
-                    courses: 2500,
-                    services: 1300
+                    courses: course2,
+                    services: service2
                   
                 }, {
                     period: '2019 Q3',
-                    courses: 600,
-                    services: 1400
+                    courses:course3,
+                    services: service3
                    
                 }, {
                     period: '2019 Q4',
-                    courses: 3767,
-                    services: 3597
+                    courses: course4,
+                    services: service4
                    
                 }
 

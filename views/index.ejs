@@ -10,7 +10,15 @@
 
 
         <script>
-               
+              
+        var course1=15,
+            service1=15
+            course2=2500;
+            service2=1300
+            course3=600;
+            service3=1400
+            course4=3767,
+            service4= 3597
                
              var dataPie = [{
                             label: "Users",
@@ -322,7 +330,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon pink"><i class="fa fa-money"></i></span>
             <div class="mini-stat-info">
-                <span>34,320</span>
+                <span><%=(profits[0].sum)/10%> $</span>
                 Dollar Profit Today
             </div>
         </div>
@@ -356,7 +364,6 @@
                    
                      <% } %>
                 </ul>
-                <input type="text" class="form-control evnt-input" placeholder="NOTES">
             </div>
         </div>
     </div>

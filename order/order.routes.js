@@ -157,6 +157,295 @@ exports.todayprofit = (req,res) => {
     });
 }
 
+exports.thismonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth(),01),
+        $lt: new Date(2019,new Date().getMonth(),30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+
+
+exports.thismonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth(),01),
+        $lt: new Date(2019,new Date().getMonth(),30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.secondmonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()-1,01),
+        $lt: new Date(2019,new Date().getMonth()-1,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+exports.thirdmonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+1,01),
+        $lt: new Date(2019,new Date().getMonth()+1,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+exports.thirdmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+1,01),
+        $lt: new Date(2019,new Date().getMonth()+1,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.fourthmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+2,01),
+        $lt: new Date(2019,new Date().getMonth()+2,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.fourthmonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+2,01),
+        $lt: new Date(2019,new Date().getMonth()+2,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.fifthmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+3,01),
+        $lt: new Date(2019,new Date().getMonth()+3,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+
+exports.fifthmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+3,01),
+        $lt: new Date(2019,new Date().getMonth()+3,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.sixthmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+4,01),
+        $lt: new Date(2019,new Date().getMonth()+4,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+exports.sixthmonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+4,01),
+        $lt: new Date(2019,new Date().getMonth()+4,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+
+exports.seventhmonthservice = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"service"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+5,01),
+        $lt: new Date(2019,new Date().getMonth()+5,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
+
+exports.seventhmonthcourse = (req,res) => {
+    
+    Order.aggregate([ { $match: {$and:[{orderStatu:true},{productType:"course"},{updatedAt: { 
+        $gte: new Date(2019,new Date().getMonth()+5,01),
+        $lt: new Date(2019,new Date().getMonth()+5,30)
+        
+
+     
+      }   }] } },
+        { $group: {_id: 'youcef',  //$region is the column name in collection
+               sum: {$sum: '$cost'}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.send(result);
+        }
+    });
+}
+
 
 exports.complete = (req, res) => {
     // Validate Request

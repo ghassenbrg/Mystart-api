@@ -363,10 +363,33 @@ app.get('/index', (req, res) => {
                                         if (!error && response.statusCode == 200) {myData5=JSON.parse(body);
                                             request.get({ url: "http://localhost:3000/api/orders-profits-today" },function(error, response, body) { 
                                                 if (!error && response.statusCode == 200) {myData6=JSON.parse(body);
+
+                                                  
+                                                            request.get({ url: "http://localhost:3000/api/secondmonthcourse" },function(error, response, body) { 
+                                                                if (!error && response.statusCode == 200) {course2=JSON.parse(body);
+                                                                    request.get({ url: "http://localhost:3000/api/thirddmonthcourse" },function(error, response, body) { 
+                                                                        if (!error && response.statusCode == 200) {course3=JSON.parse(body);
+                                                                          
+                                                                                  
+                                                                                                                    request.get({ url: "http://localhost:3000/api/thismonthcourse" },function(error, response, body) { 
+                                                                                                                        if (!error && response.statusCode == 200) {course=JSON.parse(body);
+                                                                                                                            
+
+                                                                                                                            request.get({ url: "http://localhost:3000/api/secondmonthservice" },function(error, response, body) { 
+                                                                                                                                if (!error && response.statusCode == 200) {service2=JSON.parse(body);
+                                                                                                                                    request.get({ url: "http://localhost:3000/api/thirddmonthservice" },function(error, response, body) { 
+                                                                                                                                        if (!error && response.statusCode == 200) {service3=JSON.parse(body);
+                                                                                                                                            
+                                                                                                                                                 
+                                                                                                                                                                           request.get({ url: "http://localhost:3000/api/thismonthservice" },function(error, response, body) { 
+                                                                                                                                                                                        if (!error && response.statusCode == 200) {service=JSON.parse(body);
+
+
+
+
                                            
-            res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5,profits:myData6}); 
-        }}); 
-    }}); 
+            res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5,profits:myData6,Coursee:Course,Coursee2:course2,Coursee3:course3,Servicee:service,Servicee2:service2,Servicee3:service3}); 
+        }}) }}) }}) }})  }}) }})  }})  }})
     }})
            }
        })});
@@ -876,8 +899,29 @@ app.post('/', function(req, res) {
                                                     if (!error && response.statusCode == 200) {myData5=JSON.parse(body);
                                                         request.get({ url: "http://localhost:3000/api/orders-profits-today" },function(error, response, body) { 
                                                             if (!error && response.statusCode == 200) {myData6=JSON.parse(body);
-                        res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5,profits:myData6}); 
-                    }}); }}); 
+                                                                request.get({ url: "http://localhost:3000/api/thismonthcourse" },function(error, response, body) { 
+                                                                    if (!error && response.statusCode == 200) {course=JSON.parse(body);
+                                                                        request.get({ url: "http://localhost:3000/api/thismonthservice" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {service=JSON.parse(body);
+                                                                        request.get({ url: "http://localhost:3000/api/secondmonthservice" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {service2=JSON.parse(body);
+                                                                                request.get({ url: "http://localhost:3000/api/secondmonthcourse" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {course2=JSON.parse(body);
+                                                                                request.get({ url: "http://localhost:3000/api/thirdmonthservice" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {service3=JSON.parse(body);
+                                                                                request.get({ url: "http://localhost:3000/api/thirdmonthcourse" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {course3=JSON.parse(body);
+                                                                                request.get({ url: "http://localhost:3000/api/fourthmonthservice" },function(error, response, body) { 
+                                                                            if (!error && response.statusCode == 200) {service4=JSON.parse(body);
+                                                                                request.get({ url: "http://localhost:3000/api/fourthmonthcourse" },function(error, response, body) { 
+                                                                                    if (!error && response.statusCode == 200) {course4=JSON.parse(body);
+                                                                              
+                                                                                    
+    
+res.render('index',{data: myData,data2:myData2,moment:moment,data3:myData3,data4:myData4,totalsolde:myData5,profits:myData6,coursee:course,servicee:service,coursee2:course2,servicee2:service2,coursee3:course3,servicee3:service3,coursee4:course4,servicee4:service4}); 
+            }}) }})  }})  }})  }})  }})  }})   }})  
+             
+                    }}) }})
 
                                     }})}})}})
                       
@@ -899,6 +943,7 @@ app.post('/', function(req, res) {
                     if (!error && response.statusCode == 200) {
                         myData = JSON.parse(body);
 
+                        
                         request.get({ url: "http://localhost:3000/api/todayevents" },function(error, response, body) { 
                             if (!error && response.statusCode == 200) {  myData2 = JSON.parse(body);
 

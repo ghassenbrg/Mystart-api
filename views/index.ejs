@@ -11,15 +11,7 @@
 
         <script>
               
-        var course1=15,
-            service1=15
-            course2=2500;
-            service2=1300
-            course3=600;
-            service3=1400
-            course4=3767,
-            service4= 3597
-               
+      
              var dataPie = [{
                             label: "Users",
                             data: parseInt( "<%=data4.nbr%>")
@@ -27,6 +19,17 @@
                             label: "Experts",
                             data: parseInt( "<%=data3.nbr%>")
                         }];
+
+
+         var course1= parseInt("<%=(coursee[0].sum)%>"),
+            service1= parseInt("<%=(servicee[0].sum)%>"),
+            course2= parseInt("<%=(coursee2[0].sum)%>"),
+            service2= parseInt("<%=(servicee2[0].sum)%>"),
+            course3= parseInt("<%=(coursee3[0].sum)%>"),
+            service3= parseInt("<%=(servicee3[0].sum)%>"),
+            course4= parseInt("<%=(coursee4[0].sum)%>"),
+            service4= parseInt("<%=(servicee4[0].sum)%>");
+               
             </script>
 <section id="container">
 <!--header start-->
